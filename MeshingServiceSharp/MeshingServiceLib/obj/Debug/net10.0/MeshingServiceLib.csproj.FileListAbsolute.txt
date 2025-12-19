@@ -1,0 +1,11 @@
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\bin\Debug\net10.0\MeshingServiceLib.deps.json
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\bin\Debug\net10.0\MeshingServiceLib.dll
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\bin\Debug\net10.0\MeshingServiceLib.pdb
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\MeshingServiceLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\MeshingServiceLib.AssemblyInfoInputs.cache
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\MeshingServiceLib.AssemblyInfo.cs
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\MeshingServiceLib.csproj.CoreCompileInputs.cache
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\MeshingServiceLib.dll
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\refint\MeshingServiceLib.dll
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\MeshingServiceLib.pdb
+C:\Users\zhukopav\Documents\github\personal\MeshingService\MeshingServiceSharp\MeshingServiceLib\obj\Debug\net10.0\ref\MeshingServiceLib.dll

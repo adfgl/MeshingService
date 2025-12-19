@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MeshingServiceLib/MeshingServiceLib.csproj" />
+  <Project Path="MeshingServiceTests/MeshingServiceTests.csproj" />
+</Solution>
