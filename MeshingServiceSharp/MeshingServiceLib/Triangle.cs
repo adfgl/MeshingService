@@ -3,19 +3,16 @@
 namespace MeshingServiceLib
 {
     public struct Triangle(
-        int index,
         int vtx0, int vtx1, int vtx2,
         int adj0, int adj1, int adj2,
-        int con0, int con1, int con2,
-
+        bool con0, bool con1, bool con2,
         TriangleState state)
     {
-        public static readonly Triangle Dead = new Triangle(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, TriangleState.Ambiguous);
+        public static readonly Triangle Dead = new Triangle(-1, -1, -1, -1, -1, -1, false, false, false, TriangleState.Ambiguous);
 
-        public int index = index;
         public int vtx0 = vtx0, vtx1 = vtx1, vtx2 = vtx2;
         public int adj0 = adj0, adj1 = adj1, adj2 = adj2;
-        public int con0 = con0, con1 = con1, con2 = con2;
+        public bool con0 = con0, con1 = con1, con2 = con2;
         public TriangleState state = state;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -83,7 +80,6 @@ namespace MeshingServiceLib
 
                 case 1:
                     return new Triangle(
-                        index,
                         vtx1, vtx2, vtx0,
                         adj1, adj2, adj0,
                         con1, con2, con0,
@@ -91,7 +87,6 @@ namespace MeshingServiceLib
 
                 default: 
                     return new Triangle(
-                        index,
                         vtx2, vtx0, vtx1,
                         adj2, adj0, adj1,
                         con2, con0, con1,
@@ -109,7 +104,6 @@ namespace MeshingServiceLib
             {
                 if (end != vtx2) return Dead;
                 return new Triangle(
-                    index,
                     vtx1, vtx2, vtx0,
                     adj1, adj2, adj0,
                     con1, con2, con0,
@@ -120,7 +114,6 @@ namespace MeshingServiceLib
             {
                 if (end != vtx0) return Dead;
                 return new Triangle(
-                    index,
                     vtx2, vtx0, vtx1,
                     adj2, adj0, adj1,
                     con2, con0, con1,

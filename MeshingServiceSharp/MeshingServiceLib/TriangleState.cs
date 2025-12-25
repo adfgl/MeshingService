@@ -2,6 +2,6 @@
 {
     public enum TriangleState : byte
     {
-        Keep, Remove, Ambiguous
+        Keep = 0, Remove = 1, Ambiguous = 2
     }
 }

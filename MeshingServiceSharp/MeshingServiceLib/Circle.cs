@@ -1,9 +1,12 @@
-﻿namespace MeshingServiceLib
+﻿using System.Runtime.CompilerServices;
+
+namespace MeshingServiceLib
 {
     public readonly struct Circle(double x, double y, double radiusSqr)
     {
         public readonly double x = x, y = y, radiusSqr = radiusSqr;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Circle From2Points(double x1, double y1, double x2, double y2)
         {
             double dx = x2 - x1;
@@ -11,6 +14,7 @@
             return new Circle((x1 + x2) / 2.0, (y1 + y2) / 2.0, (dx * dx + dy * dy) * 0.25);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Circle From3Points(double x1, double y1, double x2, double y2, double x3, double y3)
         {
             // https://stackoverflow.com/questions/62488827/solving-equation-to-find-center-point-of-circle-from-3-points
@@ -46,5 +50,8 @@
             double dy = this.y - y;
             return dx * dx + dy * dy < radiusSqr;
         }
+
+        public static Circle From2Points(IPoint a, IPoint b) => From2Points(a.X, a.Y, b.X, b.Y);
+        public static Circle From3Points(IPoint a, IPoint b, IPoint c) => From3Points(a.X, a.Y, b.X, b.Y, c.X, c.Y);
     }
 }
