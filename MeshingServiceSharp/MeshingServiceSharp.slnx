@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="MeshingService.IO/MeshingService.IO.csproj" Id="67e212d1-8b00-4fab-ae22-7851af447628" />
   <Project Path="MeshingServiceLib/MeshingServiceLib.csproj" />
   <Project Path="MeshingServiceTests/MeshingServiceTests.csproj" />
 </Solution>
