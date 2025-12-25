@@ -5,15 +5,16 @@ namespace MeshingServiceLib
     public struct Triangle(
         int vtx0, int vtx1, int vtx2,
         int adj0, int adj1, int adj2,
-        bool con0, bool con1, bool con2,
+        int con0, int con1, int con2,
         TriangleState state)
     {
-        public static readonly Triangle Dead = new Triangle(-1, -1, -1, -1, -1, -1, false, false, false, TriangleState.Ambiguous);
+        public static readonly Triangle Dead = new Triangle(-1, -1, -1, -1, -1, -1, -1, -1, -1, TriangleState.Ambiguous);
 
         public int vtx0 = vtx0, vtx1 = vtx1, vtx2 = vtx2;
         public int adj0 = adj0, adj1 = adj1, adj2 = adj2;
-        public bool con0 = con0, con1 = con1, con2 = con2;
+        public int con0 = con0, con1 = con1, con2 = con2;
         public TriangleState state = state;
+
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public readonly int IndexOf(int vertex)
@@ -72,26 +73,20 @@ namespace MeshingServiceLib
 #if DEBUG
             if (edge > 2) return Dead;
 #endif
-
-            switch (edge)
+            if (edge == 0) return this;
+            if (edge == 1)
             {
-                case 0:
-                    return this;
-
-                case 1:
-                    return new Triangle(
-                        vtx1, vtx2, vtx0,
-                        adj1, adj2, adj0,
-                        con1, con2, con0,
-                        state);
-
-                default: 
-                    return new Triangle(
-                        vtx2, vtx0, vtx1,
-                        adj2, adj0, adj1,
-                        con2, con0, con1,
-                        state);
+                return new Triangle(
+                       vtx1, vtx2, vtx0,
+                       adj1, adj2, adj0,
+                       con1, con2, con0,
+                       state);
             }
+            return new Triangle(
+                      vtx2, vtx0, vtx1,
+                      adj2, adj0, adj1,
+                      con2, con0, con1,
+                      state);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -1,12 +1,12 @@
 ﻿namespace MeshingServiceLib
 {
-    public sealed class Vertex(double x, double y, double seed) : IPoint
+    public sealed class Vertex(string? id, double x, double y, double seed) : IPoint
     {
-        public int Index { get; set; } = -1;
-        public int Triangle { get; set; } = -1;
-
+        public string? Id { get; set; } = id;
         public double X { get; set; } = x;
         public double Y { get; set; } = y;
+
+        public int Triangle { get; set; } = -1;
         public double Seed { get; set; } = seed;
 
         public static double Interpolate(Vertex a, Vertex b, double x, double y)
@@ -21,15 +21,6 @@
             double t = ((x - a.X) * dx + (y - a.Y) * dy) / len2;
             if (t < 0) t = 0; else if (t > 1) t = 1;
             return a.Seed + t * (b.Seed - a.Seed);
-        }
-
-        public static bool CloseOrEqual(Vertex a, Vertex b, double eps)
-        {
-            if (a.Index == b.Index && a.Index != -1)
-            {
-                return true;
-            }
-            return GeometryHelper.LengthSquared(a, b) <= eps;
         }
     }
 }

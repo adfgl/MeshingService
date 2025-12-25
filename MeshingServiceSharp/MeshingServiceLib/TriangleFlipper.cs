@@ -1,38 +1,41 @@
 ﻿namespace MeshingServiceLib
 {
-    public class TriangleFlipper(Mesh mesh)
+    public class TriangleFlipper(Mesh mesh) : TriangleProcessor(mesh)
     {
-        readonly int[] _newTriangles = new int[4];
-        public Mesh Mesh => mesh;
-        public int[] NewTriangles => _newTriangles;
-        
-
-        public void SetAdjacent(int adjIndex, int adjStart, int adjEnd, int value)
+        public bool CanFlip(int t0, int e0, out bool should)
         {
-            if (adjIndex == -1) return;
+            should = false;
 
-            Triangle t = Mesh.Triangles[adjIndex];
-            switch (t.IndexOf(adjStart, adjEnd))
+            List<Vertex> nodes = Mesh.Vertices;
+            List<Triangle> tris = Mesh.Triangles;
+
+            Triangle tri0 = tris[t0].Orient(e0);
+
+            int t1 = tri0.adj0;
+            if (t1 == -1 || tri0.con0 != -1)
             {
-                case 0:
-                    t.adj0 = value;
-                    break;
-
-                case 1:
-                    t.adj1 = value;
-                    break;
-
-                case 2:
-                    t.adj2 = value;
-                    break;
-
-                default:
-                    throw new Exception();
+                return false;
             }
 
-            Mesh.Triangles[adjIndex] = t;
+            Vertex v0 = nodes[tri0.vtx0];
+            Vertex v1 = nodes[tri0.vtx1];
+            Vertex v2 = nodes[tri0.vtx2];
+
+            Triangle tri1 = tris[t1];
+            int e1 = tri1.IndexOf(tri0.vtx1, tri0.vtx0);
+
+            int i3 = e1 switch
+            {
+                0 => tri1.vtx2,
+                1 => tri1.vtx0,
+                2 => tri1.vtx1,
+                _ => throw new Exception(),
+            };
+
+            Vertex v3 = nodes[i3];
+            should = Mesh.Circles[t0].Contains(v3.X, v3.Y);
+            return GeometryHelper.IsConvex(v1, v2, v0, v3);
         }
-        
 
         public int Flip(int t0, int e0, bool forceFlip)
         {
@@ -40,14 +43,14 @@
             List<Vertex> vertices = Mesh.Vertices;
             List<Circle> circles = Mesh.Circles;
 
-            /*  # ROTATE EDGE COUNTER-CLOCKWISE #
+            /*  
              *        v2                   v2
              *        /\                  /|\
              *       /  \                / | \
              *      /    \              /  |  \
              *     /  t0  \            /   |   \
              *    /   →    \          /    |    \
-             * v0+----------+v1    v0+ t0 ↓|↑ t1 +v1
+             * v0+----------+v1    v0+ t0 ↑|↓ t1 +v1
              *    \   ←    /          \    |    /
              *     \  t1  /            \   |   /
              *      \    /              \  |  /
@@ -58,11 +61,10 @@
 
 
             Triangle old0 = triangles[t0].Orient(e0);
-            bool constraint = old0.con0;
-
+            int con = old0.con0;
             if (old0.adj0 == -1 // can't flip if adjacent does not exist
                 || 
-                (constraint // can't flip constrained...
+                (con != -1 // can't flip constrained...
                 && 
                 !forceFlip)) // ..unless forced
             {
@@ -74,8 +76,7 @@
             int i2 = old0.vtx2;
 
             int t1 = old0.adj0;
-            Triangle old1 = triangles[t1];
-            old1 = old1.Orient(i1, i0);
+            Triangle old1 = triangles[t1].Orient(i1, i0);
 
             int i3 = old1.vtx2;
 
@@ -92,12 +93,12 @@
             circles[t0] = Circle.From3Points(v0, v3, v2);
             triangles[t0] = new Triangle(i0, i3, i2,
                  old1.adj1, t1, old0.adj2,
-                 old1.con1, constraint, old0.con2, state);
+                 old1.con1, con, old0.con2, state);
 
             circles[t1] = Circle.From3Points(v3, v1, v2);
             triangles[t1] = new Triangle(i3, i1, i2,
                 old1.adj2, old0.adj1, t0,
-                old1.con2, old0.con1, constraint, state);
+                old1.con2, old0.con1, con, state);
 
             // as a result two triangles have 'lost' their neigbours
             // namely: t1(v0-v3) & t0 (v1-v2)
@@ -107,8 +108,21 @@
             v0.Triangle = v2.Triangle = v3.Triangle = t0;
             v1.Triangle = t1;
 
-            _newTriangles[0] = t0;
-            _newTriangles[1] = t1;
+            NewTriangles[0] = t0;
+            NewTriangles[1] = t1;
+
+            if (con != -1)
+            {
+                TriangleEdge edge = Mesh.Edges[con];
+                Mesh.Edges[con] = new TriangleEdge(edge.id, i3, i2, t0);
+            }
+
+            con = old1.con0;
+            if (con != -1)
+            {
+                TriangleEdge edge = Mesh.Edges[con];
+                Mesh.Edges[con] = new TriangleEdge(edge.id, i2, i3, t1);
+            }
             return 2;
         }
     }

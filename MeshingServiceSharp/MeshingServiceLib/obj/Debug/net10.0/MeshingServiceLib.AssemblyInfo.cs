@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MeshingServiceLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0711758e402a7e36283342113861a0a1f86d9298")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e21ced692f2159842f1554418f75708937f38fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("MeshingServiceLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MeshingServiceLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
