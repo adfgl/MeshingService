@@ -1,6 +1,6 @@
 ﻿namespace MeshingServiceLib
 {
-    public class Polygon<T> where T : IPoint
+    public class Polygon<T> where T : class, IPoint
     {
         readonly List<T> _points;
         readonly Rectangle _bounds;
@@ -16,6 +16,10 @@
             {
                 double x = point.X;
                 double y = point.Y;
+                if (IsDuplicate(_points, point))
+                {
+                    continue;
+                }
 
                 if (x < minX) minX = x;
                 if (y < minY) minY = y;
@@ -30,7 +34,25 @@
             {
                 _points.Add(first);
             }
+
+            if (_points.Count < 4)
+            {
+                throw new Exception("Invalid polygon: polygon must contain at least 3 unique vertices.");
+            }
+
             _bounds = new Rectangle(minX, minY, maxX, maxY);
+        }
+
+        bool IsDuplicate(IEnumerable<T> existing, T point)
+        {
+            foreach (T item in existing)
+            {
+                if (GeometryHelper.Length(item, point) < 0.001)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Rectangle Bounds => _bounds;
@@ -43,6 +65,27 @@
             {
                 yield return (_points[i], _points[i + 1]);
             }
+        }
+
+        public bool IsSelfIntersecting()
+        {
+            foreach ((T a1, T b1) in GetEdges())
+            {
+                foreach ((T a2, T b2) in GetEdges())
+                {
+                    if (a1 == a2 || a1 == b2 ||
+                        b1 == b2 || b1 == a2)
+                    {
+                        continue;
+                    }
+
+                    if (GeometryHelper.Intersect(a1, b1, a2, b2, out _, out _))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public bool Contains(double x, double y, double eps)

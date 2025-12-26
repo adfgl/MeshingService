@@ -24,7 +24,7 @@
 
             mesh.Circles.Add(Circle.From3Points(a, b, c));
 
-            mesh.Triangles.Add(new Triangle(0, 1, 2, -1, -1, -1, -1, -1, -1, TriangleState.Keep));
+            mesh.Triangles.Add(new Triangle(0, 1, 2, -1, -1, -1, -1, -1, -1));
 
             return mesh;
         }

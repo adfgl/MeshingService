@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MeshingService.IO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e21ced692f2159842f1554418f75708937f38fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be114699480f22fbe7509782e7a69d02ee542719")]
 [assembly: System.Reflection.AssemblyProductAttribute("MeshingService.IO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MeshingService.IO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

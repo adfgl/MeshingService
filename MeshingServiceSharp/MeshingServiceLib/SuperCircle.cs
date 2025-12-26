@@ -44,8 +44,7 @@
 
                 mesh.Triangles.Add(new Triangle(v0, v1, v2,
                     adj0, adj1, adj2,
-                    -1, -1, -1,
-                    TriangleState.Keep));
+                    -1, -1, -1));
 
                 if (mesh.Vertices[v0].Triangle == -1) mesh.Vertices[v0].Triangle = triIndex;
                 if (mesh.Vertices[v1].Triangle == -1) mesh.Vertices[v1].Triangle = triIndex;

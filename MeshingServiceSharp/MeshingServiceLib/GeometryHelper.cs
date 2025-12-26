@@ -20,6 +20,20 @@ namespace MeshingServiceLib
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Cross(IPoint a, IPoint b, double x, double y)
+        {
+            return (b.X - a.X) * (y - a.Y) - (b.Y - a.Y) * (x - a.X);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double LengthSquared(IPoint a, double px, double py)
+        {
+            double dx = a.X - px;
+            double dy = a.Y - py;
+            return dx * dx + dy * dy;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Cross(IPoint a, IPoint b, IPoint c)
         {
             return (b.X - a.X) * (c.Y - a.Y) - (b.Y - a.Y) * (c.X - a.X);
@@ -124,3 +138,4 @@ namespace MeshingServiceLib
             return true;
         }
     }
+}

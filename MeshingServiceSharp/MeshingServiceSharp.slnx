@@ -2,4 +2,5 @@
   <Project Path="MeshingService.IO/MeshingService.IO.csproj" Id="67e212d1-8b00-4fab-ae22-7851af447628" />
   <Project Path="MeshingServiceLib/MeshingServiceLib.csproj" />
   <Project Path="MeshingServiceTests/MeshingServiceTests.csproj" />
+  <Project Path="TriUgla.Mesher/TriUgla.Mesher.csproj" Id="98a4a2d8-13ed-45b4-b4c5-f0e198f647c1" />
 </Solution>
