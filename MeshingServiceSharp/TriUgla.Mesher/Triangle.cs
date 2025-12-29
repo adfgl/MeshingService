@@ -12,20 +12,20 @@ namespace TriUgla.Mesher
         public int con0 = con0, con1 = con1, con2 = con2;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly int IndexOf(int v) =>
-          v == vtx0 ? 0 : v == vtx1 ? 1 : v == vtx2 ? 2 : -1;
+        public static int IndexOf(in Triangle t, int v) =>
+            v == t.vtx0 ? 0 : v == t.vtx1 ? 1 : v == t.vtx2 ? 2 : -1;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly int IndexOf(int start, int end) =>
-            start == vtx0 ? (end == vtx1 ? 0 : -1) :
-            start == vtx1 ? (end == vtx2 ? 1 : -1) :
-            start == vtx2 ? (end == vtx0 ? 2 : -1) : -1;
+        public static int IndexOf(in Triangle t, int start, int end) =>
+            start == t.vtx0 ? (end == t.vtx1 ? 0 : -1) :
+            start == t.vtx1 ? (end == t.vtx2 ? 1 : -1) :
+            start == t.vtx2 ? (end == t.vtx0 ? 2 : -1) : -1;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly int IndexOfInvariant(int start, int end) =>
-            start == vtx0 ? (end == vtx1 ? 0 : end == vtx2 ? 2 : -1) :
-            start == vtx1 ? (end == vtx2 ? 1 : end == vtx0 ? 0 : -1) :
-            start == vtx2 ? (end == vtx0 ? 2 : end == vtx1 ? 1 : -1) :
+        public static int IndexOfInvariant(in Triangle t, int start, int end) =>
+            start == t.vtx0 ? (end == t.vtx1 ? 0 : end == t.vtx2 ? 2 : -1) :
+            start == t.vtx1 ? (end == t.vtx2 ? 1 : end == t.vtx0 ? 0 : -1) :
+            start == t.vtx2 ? (end == t.vtx0 ? 2 : end == t.vtx1 ? 1 : -1) :
             -1;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

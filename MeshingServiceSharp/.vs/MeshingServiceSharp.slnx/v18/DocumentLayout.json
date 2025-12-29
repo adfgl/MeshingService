@@ -3,6 +3,58 @@
   "WorkspaceRootPath": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\vertexinserter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\vertexinserter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\meshfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\meshfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\circler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\circler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\vertexmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\vertexmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\vertex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\vertex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\meshprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\meshprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\circler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\circler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\geometryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\geometryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\meshlegalizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\meshlegalizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAFD3DF2-3B4F-4ABC-9AFB-A5CFE696A50E}|TriUgla.WebApi\\TriUgla.WebApi.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.webapi\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EAFD3DF2-3B4F-4ABC-9AFB-A5CFE696A50E}|TriUgla.WebApi\\TriUgla.WebApi.csproj|solutionrelative:triugla.webapi\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,10 +67,6 @@
       "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\polygon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\topologyprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\topologyprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\edge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\edge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,40 +75,12 @@
       "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\triangleedge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\geometryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\geometryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\geometryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\geometryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\polygon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\polygon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\edgemeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\edgemeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\rectangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\rectangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\vertex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\vertex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -79,24 +99,12 @@
       "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\meshcompactor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\triugla.mesher\\vertexmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98A4A2D8-13ED-45B4-B4C5-F0E198F647C1}|TriUgla.Mesher\\TriUgla.Mesher.csproj|solutionrelative:triugla.mesher\\vertexmeta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\vertex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\vertex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\supercircle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\supercircle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\circler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|solutionrelative:meshingservicelib\\circler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B99CCC37-0F5C-8654-D7BE-492C19517F65}|MeshingServiceLib\\MeshingServiceLib.csproj|c:\\users\\zhukopav\\documents\\github\\personal\\meshingservice\\meshingservicesharp\\meshingservicelib\\supertriangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -151,58 +159,162 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Shape.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Shape.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Shape.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Shape.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Shape.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAFAAAAAAAAAA==",
+              "Title": "VertexInserter.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\VertexInserter.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\VertexInserter.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\VertexInserter.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\VertexInserter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-27T09:40:35.251Z",
+              "WhenOpened": "2025-12-29T17:10:59.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Circler.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Circler.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Circler.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Circler.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Circler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T16:40:53.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MeshProcessor.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\MeshProcessor.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\MeshProcessor.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\MeshProcessor.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\MeshProcessor.cs",
+              "ViewState": "AgIAANcAAAAAAAAAAAAiwAIBAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T17:50:59.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Circler.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Circler.cs",
+              "RelativeDocumentMoniker": "MeshingServiceLib\\Circler.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Circler.cs",
+              "RelativeToolTip": "MeshingServiceLib\\Circler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T12:25:41.796Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "Triangle.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Triangle.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Triangle.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Triangle.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Triangle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwB4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T17:32:48.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VertexMeta.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\VertexMeta.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\VertexMeta.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\VertexMeta.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\VertexMeta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T17:36:51.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Vertex.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Vertex.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Vertex.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Vertex.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Vertex.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T17:33:50.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Mesh.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Mesh.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Mesh.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Mesh.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Mesh.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T17:25:11.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "GeometryHelper.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\GeometryHelper.cs",
               "RelativeDocumentMoniker": "TriUgla.Mesher\\GeometryHelper.cs",
               "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\GeometryHelper.cs",
               "RelativeToolTip": "TriUgla.Mesher\\GeometryHelper.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAD4vw8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-27T08:08:30.603Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Edge.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Edge.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Edge.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Edge.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Edge.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "MeshLegalizer.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\MeshLegalizer.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\MeshLegalizer.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\MeshLegalizer.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\MeshLegalizer.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAYwB8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:41:23.968Z",
+              "WhenOpened": "2025-12-29T16:07:11.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Polygon.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Polygon.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Polygon.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Polygon.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Polygon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:45:54.443Z",
+              "DocumentIndex": 12,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.WebApi\\Dockerfile",
+              "RelativeDocumentMoniker": "TriUgla.WebApi\\Dockerfile",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.WebApi\\Dockerfile",
+              "RelativeToolTip": "TriUgla.WebApi\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-29T16:06:48.703Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
+              "Title": "Shape.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Shape.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Shape.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Shape.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Shape.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T09:40:35.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "GeometryHelper.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\GeometryHelper.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\GeometryHelper.cs",
@@ -210,25 +322,35 @@
               "RelativeToolTip": "MeshingServiceLib\\GeometryHelper.cs",
               "ViewState": "AgIAABQAAAAAAAAAAIAzwDwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T08:40:08.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T08:40:08.938Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TopologyProcessing.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\TopologyProcessing.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\TopologyProcessing.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\TopologyProcessing.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\TopologyProcessing.cs",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAhwNkBAAAUAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "Polygon.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Polygon.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Polygon.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Polygon.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Polygon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:50:59.506Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T17:45:54.443Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 16,
+              "Title": "Edge.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Edge.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\Edge.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Edge.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\Edge.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T17:41:23.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "TriangleEdge.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\TriangleEdge.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\TriangleEdge.cs",
@@ -236,12 +358,11 @@
               "RelativeToolTip": "MeshingServiceLib\\TriangleEdge.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T11:36:10.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T11:36:10.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 14,
               "Title": "Shape.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Shape.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\Shape.cs",
@@ -249,12 +370,11 @@
               "RelativeToolTip": "MeshingServiceLib\\Shape.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T10:03:37.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T10:03:37.612Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 19,
               "Title": "EdgeMeta.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\EdgeMeta.cs",
               "RelativeDocumentMoniker": "TriUgla.Mesher\\EdgeMeta.cs",
@@ -262,38 +382,11 @@
               "RelativeToolTip": "TriUgla.Mesher\\EdgeMeta.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:41:55.566Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T17:41:55.566Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Rectangle.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Rectangle.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Rectangle.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Rectangle.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Rectangle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:46:34.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Vertex.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Vertex.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Vertex.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Vertex.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Vertex.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:33:50.68Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Circle.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Circle.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\Circle.cs",
@@ -305,31 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Triangle.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Triangle.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Triangle.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Triangle.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Triangle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:32:48.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Mesh.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Mesh.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\Mesh.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Mesh.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\Mesh.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:25:11.454Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "Circle.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\Circle.cs",
               "RelativeDocumentMoniker": "TriUgla.Mesher\\Circle.cs",
@@ -341,19 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "VertexMeta.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\VertexMeta.cs",
-              "RelativeDocumentMoniker": "TriUgla.Mesher\\VertexMeta.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\VertexMeta.cs",
-              "RelativeToolTip": "TriUgla.Mesher\\VertexMeta.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:36:51.373Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "MeshCompactor.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\MeshCompactor.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\MeshCompactor.cs",
@@ -365,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "Rectangle.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Rectangle.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\Rectangle.cs",
@@ -377,7 +434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "Vertex.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Vertex.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\Vertex.cs",
@@ -389,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "SuperCircle.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\SuperCircle.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\SuperCircle.cs",
@@ -401,7 +458,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "DtoEdge.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingService.IO\\DtoEdge.cs",
               "RelativeDocumentMoniker": "MeshingService.IO\\DtoEdge.cs",
@@ -413,7 +470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "SuperTriangle.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\SuperTriangle.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\SuperTriangle.cs",
@@ -425,19 +482,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Circler.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Circler.cs",
-              "RelativeDocumentMoniker": "MeshingServiceLib\\Circler.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Circler.cs",
-              "RelativeToolTip": "MeshingServiceLib\\Circler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T12:25:41.796Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "Triangulator.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Triangulator.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\Triangulator.cs",
@@ -449,7 +494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "QuadTree.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\QuadTree.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\QuadTree.cs",
@@ -461,7 +506,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "IPoint.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\IPoint.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\IPoint.cs",
@@ -473,7 +518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "DtoTriangle.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingService.IO\\DtoTriangle.cs",
               "RelativeDocumentMoniker": "MeshingService.IO\\DtoTriangle.cs",
@@ -485,7 +530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "ISuperStructure.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\ISuperStructure.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\ISuperStructure.cs",
@@ -497,7 +542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "DtoVertex.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingService.IO\\DtoVertex.cs",
               "RelativeDocumentMoniker": "MeshingService.IO\\DtoVertex.cs",
@@ -509,7 +554,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "TriangleIndexOfVertexTests.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceTests\\TriangleIndexOfVertexTests.cs",
               "RelativeDocumentMoniker": "MeshingServiceTests\\TriangleIndexOfVertexTests.cs",
@@ -518,52 +563,6 @@
               "ViewState": "AgIAABoAAAAAAAAAAAA1wCYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T12:13:29.966Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "e8bca60b-078b-4dd6-a3e4-b96fdca25d8e",
-        "Display": 0,
-        "X": 132,
-        "Y": 154,
-        "Width": 1109,
-        "Height": 1354,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Polygon.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Polygon.cs",
-              "RelativeDocumentMoniker": "MeshingServiceLib\\Polygon.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Polygon.cs",
-              "RelativeToolTip": "MeshingServiceLib\\Polygon.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAxwIsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T12:56:34.043Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Triangle.cs",
-              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Triangle.cs",
-              "RelativeDocumentMoniker": "MeshingServiceLib\\Triangle.cs",
-              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Triangle.cs",
-              "RelativeToolTip": "MeshingServiceLib\\Triangle.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAiwDcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:28:29.775Z"
             }
           ]
         }
@@ -588,15 +587,49 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Mesh.cs",
               "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Mesh.cs",
               "RelativeDocumentMoniker": "MeshingServiceLib\\Mesh.cs",
               "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\MeshingServiceLib\\Mesh.cs",
               "RelativeToolTip": "MeshingServiceLib\\Mesh.cs",
-              "ViewState": "AgIAANcBAAAAAAAAAAAmwO8BAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAIcCAAAAAAAAAAAWwKMCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-26T16:39:35.355Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "cfbcc6c6-be40-4391-8471-7ac04dfd10f4",
+        "Display": 0,
+        "X": 191,
+        "Y": 113,
+        "Width": 1220,
+        "Height": 1282,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MeshFinder.cs",
+              "DocumentMoniker": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\MeshFinder.cs",
+              "RelativeDocumentMoniker": "TriUgla.Mesher\\MeshFinder.cs",
+              "ToolTip": "C:\\Users\\zhukopav\\Documents\\github\\personal\\MeshingService\\MeshingServiceSharp\\TriUgla.Mesher\\MeshFinder.cs",
+              "RelativeToolTip": "TriUgla.Mesher\\MeshFinder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T16:20:22.223Z",
               "EditorCaption": ""
             }
           ]

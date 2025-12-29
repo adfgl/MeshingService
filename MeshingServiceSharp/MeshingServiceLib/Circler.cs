@@ -1,18 +1,10 @@
 ﻿namespace MeshingServiceLib
 {
-    public struct Circler
+    public struct Circler(List<Triangle> triangles, int triangleIndex, int vertex)
     {
-        readonly List<Triangle> _triangles;
-        readonly int _startTriangle, _vertex;
-        int _current;
-
-        public Circler(List<Triangle> triangles, int triangleIndex, int vertex)
-        {
-            _triangles = triangles;
-            _vertex = vertex;
-            _startTriangle = triangleIndex;
-            _current = triangleIndex;
-        }
+        readonly List<Triangle> _triangles = triangles;
+        readonly int _startTriangle = triangleIndex, _vertex = vertex;
+        int _current = triangleIndex;
 
         public readonly int Current => _current;
         public readonly int Vertex => _vertex;

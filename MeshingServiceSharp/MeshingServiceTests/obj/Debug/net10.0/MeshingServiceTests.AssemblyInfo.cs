@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MeshingServiceTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be114699480f22fbe7509782e7a69d02ee542719")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0c0ba7b3c0a6d71de008a5fa48c569fcdb9b537")]
 [assembly: System.Reflection.AssemblyProductAttribute("MeshingServiceTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MeshingServiceTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

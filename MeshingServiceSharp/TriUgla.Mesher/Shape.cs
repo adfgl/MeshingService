@@ -2,10 +2,9 @@
 {
     public sealed class Shape
     {
-        public Polygon Contour { get; }
-        public IReadOnlyList<Polygon> Holes { get; }
-        public double Eps { get; set; }
+        readonly List<Polygon> _holes;
 
+     
         public Shape(Polygon contour, List<Polygon>? holes = null, double eps = 1e-6)
         {
             List<Polygon> holesKeep;
@@ -39,9 +38,14 @@
             }
 
             Contour = contour;
-            Holes = holesKeep;
+            _holes = holesKeep;
             Eps = eps;  
         }
+
+        public Polygon Contour { get; }
+        public IReadOnlyList<Polygon> Holes => _holes;
+        public double Eps { get; set; }
+
 
         public bool Contains(double x, double y) =>
                 Contour.Contains(x, y, Eps) &&

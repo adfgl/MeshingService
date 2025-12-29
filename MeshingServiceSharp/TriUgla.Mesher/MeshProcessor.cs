@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace TriUgla.Mesher
 {
-    public sealed class TopologyProcessing(Mesh mesh)
+    public sealed class MeshProcessor(Mesh mesh)
     {
         readonly int[] s_new = new int[4];
 
@@ -11,10 +11,10 @@ namespace TriUgla.Mesher
         Span<Triangle> Triangles() => CollectionsMarshal.AsSpan(mesh.Triangles);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        Span<Circle> Circles() => CollectionsMarshal.AsSpan(mesh.Circles);
+        Span<Vertex> Vertices() => CollectionsMarshal.AsSpan(mesh.Vertices.Items);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        Span<Vertex> Vertices() => CollectionsMarshal.AsSpan(mesh.Vertices.Items);
+        Span<Circle> Circles() => CollectionsMarshal.AsSpan(mesh.Circles);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         Span<VertexMeta> VertexMeta() => CollectionsMarshal.AsSpan(mesh.Vertices.Meta);
@@ -28,7 +28,7 @@ namespace TriUgla.Mesher
             if ((uint)adjIndex >= (uint)tris.Length) return; // -1 or out of range: ignore
 
             ref Triangle t = ref tris[adjIndex];
-            int e = t.IndexOf(adjStart, adjEnd);
+            int e = Triangle.IndexOf(in t, adjStart, adjEnd);
             if (e < 0)
             {
                 throw new InvalidOperationException(
@@ -82,7 +82,7 @@ namespace TriUgla.Mesher
             if (adj < 0) return false;
 
             Triangle t1raw = mesh.Triangles[adj];
-            int e1 = t1raw.IndexOf(t0.vtx1, t0.vtx0);
+            int e1 = Triangle.IndexOf(in t1raw, t0.vtx1, t0.vtx0);
 #if DEBUG
             if ((uint)e1 > 2u) throw new Exception("Broken adjacency / IndexOf failed.");
 #endif
@@ -115,7 +115,7 @@ namespace TriUgla.Mesher
             if (a.con0 >= 0 && !forceFlip) return 0;
 
             Triangle bRaw = tris[t1];
-            int e1 = bRaw.IndexOf(a.vtx1, a.vtx0);
+            int e1 = Triangle.IndexOf(in bRaw, a.vtx1, a.vtx0);
 #if DEBUG
             if ((uint)e1 > 2u) throw new Exception("Broken adjacency / IndexOf failed.");
 #endif
@@ -256,7 +256,7 @@ namespace TriUgla.Mesher
             int con = old0.con0;
 
             Triangle old1 = tris[t1];
-            old1 = old1.Orient(old1.IndexOf(i1, i0));
+            old1 = old1.Orient(Triangle.IndexOf(in old1, i1, i0));
             int i4 = old1.vtx2;
 
             Span<Vertex> v = Vertices();
@@ -398,7 +398,6 @@ namespace TriUgla.Mesher
             }
             else
             {
-                // caller supplied stack may contain junk from previous use
                 stack.Clear();
                 for (int i = 0; i < indices.Length; i++)
                     stack.Push(indices[i]);
