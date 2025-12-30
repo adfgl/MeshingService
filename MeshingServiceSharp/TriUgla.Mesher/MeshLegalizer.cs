@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 
 namespace TriUgla.Mesher
 {
-    public sealed class MeshLegalizer(Mesh mesh)
+    public sealed class MeshLegalizer(Mesh mesh, MeshProcessor? processor = null)
     {
         public const int MAX_FLIPS_PER_DIAGONAL = 5;
 
-        readonly MeshProcessor _processor = new MeshProcessor(mesh);
+        readonly MeshProcessor _processor = processor ?? new MeshProcessor(mesh);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         Span<Triangle> Triangles() => CollectionsMarshal.AsSpan(mesh.Triangles);

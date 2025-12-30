@@ -19,7 +19,7 @@ namespace TriUgla.Mesher
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         Span<VertexMeta> VertexMeta() => CollectionsMarshal.AsSpan(mesh.Vertices.Meta);
 
-        public IReadOnlyList<int> New => s_new;
+        public int[] New => s_new;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         void SetAdjacent(int adjIndex, int adjStart, int adjEnd, int value)
@@ -77,7 +77,12 @@ namespace TriUgla.Mesher
         {
             should = false;
 
-            Triangle t0 = mesh.Triangles[triangleIndex].Orient(edgeIndex);
+            Triangle t0 = mesh.Triangles[triangleIndex];
+            if (edgeIndex != 0)
+            {
+                t0 = t0.Orient(edgeIndex);
+            }
+
             int adj = t0.adj0;
             if (adj < 0) return false;
 
@@ -256,7 +261,11 @@ namespace TriUgla.Mesher
             int con = old0.con0;
 
             Triangle old1 = tris[t1];
-            old1 = old1.Orient(Triangle.IndexOf(in old1, i1, i0));
+            int edge = Triangle.IndexOf(in old1, i1, i0);
+            if (edge != 0)
+            {
+                old1 = old1.Orient(edge);
+            }
             int i4 = old1.vtx2;
 
             Span<Vertex> v = Vertices();

@@ -4,6 +4,30 @@ namespace TriUgla.Mesher
 {
     public static class GeometryHelper
     {
+        public static double Interpolate(
+            double ax, double ay, double a, 
+            double bx, double by, double b,
+            double x, double y)
+        {
+            double dx = bx - ax, dy = by - ay;
+            double len2 = dx * dx + dy * dy;
+            if (len2 <= double.Epsilon)
+            {
+                return 0.5 * (a + b);
+            }
+
+            double t = ((x - ax) * dx + (y - ay) * dy) / len2;
+            if (t < 0)
+            {
+                t = 0;
+            }
+            else if (t > 1)
+            {
+                t = 1;
+            }
+            return a + t * (b - a);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Cross(
             double ax, double ay,
@@ -11,6 +35,16 @@ namespace TriUgla.Mesher
             double cx, double cy)
         {
             return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AreCollinear(
+            double ax, double ay,
+            double bx, double by,
+            double cx, double cy,
+            double eps)
+        {
+            return Math.Abs(Cross(ax, ay, bx, by, cx, cy)) <= eps;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

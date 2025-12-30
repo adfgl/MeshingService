@@ -8,5 +8,11 @@
         {
             x = this.x; y = this.y;
         }
+
+        public static bool Close(in Vertex a, in Vertex b, double eps)
+        {
+            double dx = a.x - b.x, dy = a.y - b.y;
+            return dx * dx + dy * dy <= eps * eps;
+        }
     }
 }
