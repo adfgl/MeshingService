@@ -8,4 +8,5 @@ public sealed class DtoEdge
     public int Twin { get; set; } = -1;
     public double Length { get; set; }
     public double AngleRad { get; set; }
+    public bool Constrained { get; set; }
 }
