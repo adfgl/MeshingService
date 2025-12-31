@@ -1,6 +1,6 @@
 public sealed class DtoGeometry
 {
-    public DtoPolygon Contour { get; set; }
+    public List<DtoPolygon> Contours { get; set; }
     public List<DtoPolygon>? Holes { get; set; }
     public List<DtoConstrainedEdge>? ConstrainedEdges { get; set; }
     public List<DtoVertex>? ConstrainedPoints { get; set; }
