@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 namespace TriUgla.Mesher
 {
@@ -27,6 +27,47 @@ namespace TriUgla.Mesher
             start == t.vtx1 ? (end == t.vtx2 ? 1 : end == t.vtx0 ? 0 : -1) :
             start == t.vtx2 ? (end == t.vtx0 ? 2 : end == t.vtx1 ? 1 : -1) :
             -1;
+
+        public readonly static int VertexIndexOppositeToEdge(
+            ReadOnlySpan<Triangle> triangles,
+            int triangleIndex, int edgeStart, int edgeEnd)
+        {
+            ref readonly Triangle triangle = ref triangles[triangleIndex];
+            int adjacentIndex = AdjacentIndex(in triangle, edgeStart, edgeEnd);
+            
+            ref readonly Triangle adjacent = ref triangles[adjacentIndex];
+            return VertexIndexOppositeToEdge(in adjacent, edgeEnd, edgeStart);
+        }
+
+        public readonly static int VertexIndexOppositeToEdge(
+            in Triangle triangle,
+            int edgeStart, int edgeEnd)
+        {
+            int edgeIndex = IndexOf(edgeStart, edgeEnd);
+            if (edgeIndex == -1)
+            {
+                throw new Exception();
+            }
+            return 
+                edgeIndex == 0 ? triangle.vtx2 :
+                edgeIndex == 1 ? triangle.vtx0 :
+                triangle.vtx1;
+        }
+
+        public readonly static int AdjacentIndex(
+            in Triangle triangle,
+            int edgeStart, int edgeEnd)
+        {
+            int edgeIndex = IndexOf(in triangle, edgeStart, edgeEnd);
+            if (edgeIndex == -1)
+            {
+                throw new Exception();
+            }
+            return 
+                edgeIndex == 0 ? triangle.adj0 :
+                edgeIndex == 1 ? triangle.adj1 :
+                triangle.adj2;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public readonly Triangle Orient(int edge)
