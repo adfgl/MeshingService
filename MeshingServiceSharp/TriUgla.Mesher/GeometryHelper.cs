@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 namespace TriUgla.Mesher
 {
@@ -92,8 +92,10 @@ namespace TriUgla.Mesher
             double t = (dxp * dx + dyp * dy) / dot;
             return t >= -eps && t <= 1 + eps;
         }
+            
 
-        public static bool Intersect(double p1x, double p1y,
+        public readonly static bool Intersect(
+            double p1x, double p1y,
             double p2x, double p2y,
             double q1x, double q1y,
             double q2x, double q2y,
