@@ -6,4 +6,6 @@ public sealed class DtoEdge
     public int Next { get; set; } = -1;
     public int Previous { get; set; } = -1;
     public int Twin { get; set; } = -1;
+    public double Length { get; set; }
+    public double AngleRad { get; set; }
 }
