@@ -10,7 +10,9 @@ public static class Intersection
             p2.x, p2.y,
             out double x, out double y))
         {
-            
+            double z = Interpolation.ZAtXYAlongSegment(p1, p2, x, y);
+            intercetion = new Vertex(x, y, z);
+            return true;
         }
         intersection = default;
         return false;
