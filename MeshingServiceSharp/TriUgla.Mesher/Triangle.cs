@@ -70,6 +70,24 @@ namespace TriUgla.Mesher
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public readonly OrientEdge1()
+        {
+            return new Triangle(
+                       vtx1, vtx2, vtx0,
+                       adj1, adj2, adj0,
+                       con1, con2, con0);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public readonly OrientEdge2()
+        {
+            return new Triangle(
+                      vtx2, vtx0, vtx1,
+                      adj2, adj0, adj1,
+                      con2, con0, con1);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public readonly Triangle Orient(int edge)
         {
             if (edge == 0) return this;
