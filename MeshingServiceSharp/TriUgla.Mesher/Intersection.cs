@@ -1,8 +1,8 @@
 public static class Intersection
 {
     public readonly static bool Intersect(
-        Vertex p1, Vertex p2,
-        Vertex q1, Vertex q2,
+        in Vertex p1, in Vertex p2,
+        in Vertex q1, in Vertex q2,
         out Vertex intersection)
     {
         if (Intersect(
