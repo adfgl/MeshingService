@@ -1,8 +1,15 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace TriUgla.Mesher
 {
+
+    public readonly struct SearchResult(int triangle, int edge, int vertex)
+    {
+        public readonly int triangle = triangle, edge = edge, vertex = vertex;
+
+        public static SearchResult NotFound() => new (-1, -1, -1);
+    }
     public sealed class MeshFinder(Mesh mesh, double eps = 1e-6)
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -43,11 +50,87 @@ namespace TriUgla.Mesher
         public (int triangleIndex, int edgeIndex) FindEdgeInvariant(int start, int end)
             => FindEdgeCore(start, end, Triangle.IndexOfInvariant);
 
-        public (int triangleIndex, int edgeIndex, int vertexIndex) FindContaining(double x, double y, int searchStart = -1, List<int>? path = null)
+        readonly struct TriangleEdge(
+            int start, int end, int adjacent)
+        {
+            public readonly int start = start, end = end, adjacent = adjacent;
+        }
+
+        public static bool IsZero(double value, double eps)
+        {
+            return value <= eps && value >= -eps;
+        }
+
+        public static bool AreClose(
+            double x0, double y0, 
+            double x1, double y1, 
+            double eps2)
+        {
+            double dx = x1 - x0;
+            double dy = y1 - y0;
+            return dx * dx + dy * dy <= eps2;
+        }
+
+        public static bool InRectangle(
+            double minX, double minY,
+            double maxX, double maxY,
+            double x, double y)
+        {
+            double t;
+            if (minX > maxX)
+            {
+                t = minX;
+                minX = maxX;
+                maxX = t;
+            }
+
+            if (minY > maxY)
+            {
+                t = minY;
+                minY = maxY;
+                maxY = t;
+            }
+            
+            return 
+                minX < x && x < maxX &&
+                minY < y && y < maxY;
+        }
+
+        public static int ExitEdgeIndex(
+            TriangleEdge[] edges, Span<Vertex> vertices, out double minCross)
+        {
+            minCross = double.MaxValue;
+            int index = -1;
+            for (int i = 0; i < edges.Length; i++)
+            {
+                var edge = edges[i];
+                var (xs, ys) = nodes[edge.start];
+                var (xe, ye) = nodes[edge.end];
+
+                double cross = GeometryHelper.Cross(xs, ys, ex, ey, x, y);
+                if (cross < minCross)
+                {
+                    minCross = cross;
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        public static TringleEdge[] Edges(
+            TriangleEdge[] edges, in Triangle t)
+        {
+            edges[0] = new (t.vtx0, t.vtx1, t.adj0);
+            edges[1] = new (t.vtx1, t.vtx2, t.adj1);
+            edges[2] = new (t.vtx2, t.vtx0, t.adj2);
+            return edges;
+        }
+
+        public SearchResult FindContaining(double x, double y, int searchStart = -1, List<int>? path = null)
         {
             Span<Triangle> tris = Triangles();
             int n = tris.Length;
-            if (n == 0) return (-1, -1, -1);
+            if (n == 0) return SearchResult.NotFound();
 
             double eps = Eps;
             double epsSqr = eps * eps;
@@ -57,77 +140,47 @@ namespace TriUgla.Mesher
             int steps = 0;
 
             Span<Vertex> nodes = Vertices();
+            TriangleEdge[] edges = new TriangleEdge[3];
             while (steps++ < maxSteps)
             {
                 path?.Add(current);
 
-                Triangle t = tris[current];
-                int v0 = t.vtx0, v1 = t.vtx1, v2 = t.vtx2;
-
-                Vertex p0 = nodes[v0]; double x0 = p0.x, y0 = p0.y;
-                Vertex p1 = nodes[v1]; double x1 = p1.x, y1 = p1.y;
-                Vertex p2 = nodes[v2]; double x2 = p2.x, y2 = p2.y;
-
-                int bestExit = t.adj0;
-                int worstEdge = 0;
-                int start = v0, end = v1;
-                double sx = x0, sy = y0, ex = x1, ey = y1;
-                double worstCross = GeometryHelper.Cross(x0, y0, x1, y1, x, y);
-
-                double cross12 = GeometryHelper.Cross(x1, y1, x2, y2, x, y);
-                if (cross12 < worstCross)
+                readonly ref Triangle t = ref tris[current];
+                int exitEdgeIndex = ExitEdgeIndex(Edges(edges, in t), nodes, out double minCross);
+                
+                var exitEdge = edges[exitEdgeIndex];
+                if (IsZero(minCross, eps))
                 {
-                    worstCross = cross12;
-                    bestExit = t.adj1;
-                    worstEdge = 1;
+                    var (xs, ys) = nodes[exitEdge.start];
+                    if (AreClose(x, y, xs, ys, epsSqr))
+                    {
+                        return new SearchResult(current, -1, exitEdge.start);
+                    }
 
-                    start = v1; end = v2;
-                    sx = x1; sy = y1; ex = x2; ey = y2;
+                    var (xe, ye) = nodes[exitEdge.end];
+                    if (AreClose(x, y, xe, ye, epsSqr))
+                    {
+                        return new SearchResult(current, -1, exitEdge.end);
+                    }
+
+                    if (InRectangle(xs, ys, xe, ye, x, y))
+                    {
+                        return new SearchResult(current, exitEdgeIndex, -1);
+                    }
                 }
 
-                double cross20 = GeometryHelper.Cross(x2, y2, x0, y0, x, y);
-                if (cross20 < worstCross)
+                if (minCross > 0)
                 {
-                    worstCross = cross20;
-                    bestExit = t.adj2;
-                    worstEdge = 2;
-
-                    start = v2; end = v0;
-                    sx = x2; sy = y2; ex = x0; ey = y0;
+                    return new SearchResult(current, -1, -1);
                 }
 
-                if (worstCross <= eps && worstCross >= -eps)
+                if (exitEdge.adjacent == -1)
                 {
-                    double dx = sx - x, dy = sy - y;
-                    if (dx * dx + dy * dy <= epsSqr)
-                        return (current, -1, start);
-
-                    dx = ex - x; dy = ey - y;
-                    if (dx * dx + dy * dy <= epsSqr)
-                        return (current, -1, end);
-
-                    double minX = sx < ex ? sx : ex;
-                    double maxX = sx > ex ? sx : ex;
-                    double minY = sy < ey ? sy : ey;
-                    double maxY = sy > ey ? sy : ey;
-
-                    if (x >= minX && x <= maxX && y >= minY && y <= maxY)
-                        return (current, worstEdge, -1);
+                    return SearchResult.NotFound();
                 }
-
-                if (worstCross > 0)
-                {
-                    return (current, -1, -1);
-                }
-
-                if (bestExit == -1)
-                {
-                    return (-1, -1, -1);
-                }
-
-                current = bestExit;
+                current = exitEdge.adjacent;
             }
-            return (-1, -1, -1);
+            return SearchResult.NotFound();
         }
     }
 }
