@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 namespace TriUgla.Mesher
 {
 
-    public readonly struct SearchResult(int triangle, int edge, int vertex)
+    public readonly struct SearchResult(int steps, int triangle, int edge, int vertex)
     {
-        public readonly int triangle = triangle, edge = edge, vertex = vertex;
+        public readonly int steps = steps, triangle = triangle, edge = edge, vertex = vertex;
 
         public static SearchResult NotFound() => new (-1, -1, -1);
     }
@@ -129,6 +129,8 @@ namespace TriUgla.Mesher
         public SearchResult FindContaining(double x, double y, int searchStart = -1, List<int>? path = null)
         {
             Span<Triangle> tris = Triangles();
+            Span<Vertex> nodes = Vertices();
+
             int n = tris.Length;
             if (n == 0) return SearchResult.NotFound();
 
@@ -139,13 +141,12 @@ namespace TriUgla.Mesher
             int maxSteps = n * 3;
             int steps = 0;
 
-            Span<Vertex> nodes = Vertices();
             TriangleEdge[] edges = new TriangleEdge[3];
             while (steps++ < maxSteps)
             {
                 path?.Add(current);
 
-                readonly ref Triangle t = ref tris[current];
+                readonly ref Triangle t = ref tris[triangle];
                 int exitEdgeIndex = ExitEdgeIndex(Edges(edges, in t), nodes, out double minCross);
                 
                 var exitEdge = edges[exitEdgeIndex];
@@ -154,24 +155,24 @@ namespace TriUgla.Mesher
                     var (xs, ys) = nodes[exitEdge.start];
                     if (AreClose(x, y, xs, ys, epsSqr))
                     {
-                        return new SearchResult(current, -1, exitEdge.start);
+                        return new SearchResult(steps, current, -1, exitEdge.start);
                     }
 
                     var (xe, ye) = nodes[exitEdge.end];
                     if (AreClose(x, y, xe, ye, epsSqr))
                     {
-                        return new SearchResult(current, -1, exitEdge.end);
+                        return new SearchResult(steps, current, -1, exitEdge.end);
                     }
 
                     if (InRectangle(xs, ys, xe, ye, x, y))
                     {
-                        return new SearchResult(current, exitEdgeIndex, -1);
+                        return new SearchResult(steps, current, exitEdgeIndex, -1);
                     }
                 }
 
                 if (minCross > 0)
                 {
-                    return new SearchResult(current, -1, -1);
+                    return new SearchResult(steps, current, -1, -1);
                 }
 
                 if (exitEdge.adjacent == -1)
