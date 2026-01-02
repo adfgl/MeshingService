@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 namespace TriUgla.Mesher
 {
@@ -66,6 +66,9 @@ namespace TriUgla.Mesher
         {
             return _rect.Contains(x, y) && Contains(_vts, x, y, eps);
         }
+
+        public bool ContainsOrIntersects(Polygon other, double eps)
+            => Contains(other, eps) || Intersects(other);
 
         public bool Contains(Polygon other, double eps)
         {
