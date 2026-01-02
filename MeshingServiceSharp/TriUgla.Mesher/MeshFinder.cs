@@ -8,7 +8,7 @@ namespace TriUgla.Mesher
     {
         public readonly int steps = steps, triangle = triangle, edge = edge, vertex = vertex;
 
-        public static SearchResult NotFound() => new (-1, -1, -1);
+        public static SearchResult NotFound(int steps = 0) => new (steps, -1, -1, -1);
     }
     public sealed class MeshFinder(Mesh mesh, double eps = 1e-6)
     {
@@ -22,32 +22,39 @@ namespace TriUgla.Mesher
 
         public delegate int EdgeFinder(in Triangle t, int a, int b);
 
-        public (int triangleIndex, int edgeIndex) FindEdgeCore(int start, int end, EdgeFinder finder)
+        public SearchResult FindEdgeCore(int start, int end, EdgeFinder finder)
         {
-            if (start == end) return (-1, -1);
+            if (start == end) 
+            {
+                return SearchResult.NotFound();
+            }
 
             ReadOnlySpan<Triangle> tris = Triangles();
-            int seed = mesh.Vertices.Meta[start].triangle;
-            if ((uint)seed >= (uint)tris.Length) return (-1, -1);
-
-            Circler circler = new Circler(tris, seed, start);
+            int triangleIndex = mesh.Vertices.Meta[start].triangle;
+            Circler circler = new Circler(tris, triangleIndex, start);
+            
+            int steps = 0;
             do
             {
                 int ti = circler.CurrentTriangle;
                 ref readonly Triangle t = ref tris[ti];
 
                 int ei = finder(in t, start, end);
-                if (ei != -1) return (ti, ei);
+                if (ei != -1) 
+                {
+                    return new SearchResult(steps, ti, ei, -1);
+                }
+                steps++;
             }
             while (circler.Next());
 
-            return (-1, -1);
+            return SearchResult.NotFound(steps);
         }
 
-        public (int triangleIndex, int edgeIndex) FindEdge(int start, int end)
+        public SearchResult FindEdge(int start, int end)
             => FindEdgeCore(start, end, Triangle.IndexOf);
 
-        public (int triangleIndex, int edgeIndex) FindEdgeInvariant(int start, int end)
+        public SearchResult FindEdgeInvariant(int start, int end)
             => FindEdgeCore(start, end, Triangle.IndexOfInvariant);
 
         readonly struct TriangleEdge(
@@ -142,46 +149,59 @@ namespace TriUgla.Mesher
             int steps = 0;
 
             TriangleEdge[] edges = new TriangleEdge[3];
+
+            int triangle = -1;
+            int edge = -1;
+            int vertex = -1;
             while (steps++ < maxSteps)
             {
                 path?.Add(current);
-
+                
                 readonly ref Triangle t = ref tris[triangle];
                 int exitEdgeIndex = ExitEdgeIndex(Edges(edges, in t), nodes, out double minCross);
                 
+                triangle = current;
                 var exitEdge = edges[exitEdgeIndex];
                 if (IsZero(minCross, eps))
                 {
+                    edge = -1;
+
                     var (xs, ys) = nodes[exitEdge.start];
                     if (AreClose(x, y, xs, ys, epsSqr))
                     {
-                        return new SearchResult(steps, current, -1, exitEdge.start);
+                        vertex = exitEdge.start;
+                        break;
                     }
 
                     var (xe, ye) = nodes[exitEdge.end];
                     if (AreClose(x, y, xe, ye, epsSqr))
                     {
-                        return new SearchResult(steps, current, -1, exitEdge.end);
+                        vertex = exitEdge.end;
+                        break;
                     }
 
                     if (InRectangle(xs, ys, xe, ye, x, y))
                     {
-                        return new SearchResult(steps, current, exitEdgeIndex, -1);
+                        edge = exitEdgeIndex;
+                        vertex = -1;
+                        break;
                     }
                 }
 
                 if (minCross > 0)
                 {
-                    return new SearchResult(steps, current, -1, -1);
+                    edge = vertex = -1
+                    break;
                 }
 
                 if (exitEdge.adjacent == -1)
                 {
-                    return SearchResult.NotFound();
+                    triangle = -1;
+                    break;
                 }
                 current = exitEdge.adjacent;
             }
-            return SearchResult.NotFound();
+            return new SearchResult(steps, triangle, edge, vertex);
         }
     }
 }
