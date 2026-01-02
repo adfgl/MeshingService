@@ -42,128 +42,18 @@ namespace TriUgla.Mesher
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void ReplaceConstraintSegment(int conIndex, int start, int end, int leftTriangle)
-        {
-            if (conIndex < 0) return;
-
-            List<Edge> items = mesh.Edges.Items;
-            List<EdgeMeta> metas = mesh.Edges.Meta;
-
-            EdgeMeta em = metas[conIndex];
-            items[conIndex] = new Edge(start, end);
-            metas[conIndex] = new EdgeMeta(leftTriangle, em.id);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         void SplitConstraintEdge(int conIndex, int newVertex, int leftTriangle, int rightTriangle)
         {
             if (conIndex < 0) return;
 
-            List<Edge> edgeItems = mesh.Edges.Items;
-            List<EdgeMeta> edgeMeta = mesh.Edges.Meta;
+            List<Edge> edges = mesh.Edges;
+            Edge e = edges[conIndex];
 
-            Edge e = edgeItems[conIndex];
-            EdgeMeta em = edgeMeta[conIndex];
+            Edge.Split(in e, newVertex, leftTriangle, rightTriangle, out Edge edge1, out Edge edge2);
 
-            edgeItems[conIndex] = new Edge(e.start, newVertex);
-            edgeMeta[conIndex] = new EdgeMeta(leftTriangle, em.id);
-
-            edgeItems.Add(new Edge(newVertex, e.end));
-            edgeMeta.Add(new EdgeMeta(rightTriangle, em.id));
+            edges[conIndex] = edge1;
+            edges.Add(edge2);
         }
-
-        #region FLIPPING
-        public bool CanFlip(int triangleIndex, int edgeIndex, out bool should)
-        {
-            should = false;
-
-            Triangle t0 = mesh.Triangles[triangleIndex];
-            if (edgeIndex != 0)
-            {
-                t0 = t0.Orient(edgeIndex);
-            }
-
-            int adj = t0.adj0;
-            if (adj < 0) return false;
-
-            Triangle t1raw = mesh.Triangles[adj];
-            int e1 = Triangle.IndexOf(in t1raw, t0.vtx1, t0.vtx0);
-#if DEBUG
-            if ((uint)e1 > 2u) throw new Exception("Broken adjacency / IndexOf failed.");
-#endif
-            int i3 = (e1 == 0) ? t1raw.vtx2 : (e1 == 1) ? t1raw.vtx0 : t1raw.vtx1;
-
-            Span<Vertex> v = Vertices();
-            double x0 = v[t0.vtx0].x, y0 = v[t0.vtx0].y;
-            double x1 = v[t0.vtx1].x, y1 = v[t0.vtx1].y;
-            double x2 = v[t0.vtx2].x, y2 = v[t0.vtx2].y;
-            double x3 = v[i3].x,      y3 = v[i3].y;
-
-            if (!GeometryHelper.IsConvex(x1, y1, x2, y2, x0, y0, x3, y3))
-                return false;
-
-            if (t0.con0 < 0)
-                should = mesh.Circles[triangleIndex].Contains(x3, y3);
-            return true;
-        }
-
-        public int Flip(int triangleIndex, int edgeIndex, bool forceFlip)
-        {
-            Span<Triangle> tris = Triangles();
-            Span<Circle> crcs = Circles();
-
-            Triangle a = tris[triangleIndex].Orient(edgeIndex);
-            int t1 = a.adj0;
-            if (t1 < 0) return 0;
-
-            // Respect constraint unless forced
-            if (a.con0 >= 0 && !forceFlip) return 0;
-
-            Triangle bRaw = tris[t1];
-            int e1 = Triangle.IndexOf(in bRaw, a.vtx1, a.vtx0);
-#if DEBUG
-            if ((uint)e1 > 2u) throw new Exception("Broken adjacency / IndexOf failed.");
-#endif
-            Triangle b = bRaw.Orient(e1);
-
-            int i0 = a.vtx0, i1v = a.vtx1, i2 = a.vtx2, i3 = b.vtx2;
-
-            Span<Vertex> v = Vertices();
-            double x0 = v[i0].x, y0 = v[i0].y;
-            double x1 = v[i1v].x, y1 = v[i1v].y;
-            double x2 = v[i2].x, y2 = v[i2].y;
-            double x3 = v[i3].x, y3 = v[i3].y;
-
-            // New diagonal is (i2 <-> i3)
-            // t0 becomes (i0, i3, i2)
-            crcs[triangleIndex] = Circle.From3Points(x0, y0, x3, y3, x2, y2);
-            tris[triangleIndex] = new Triangle(i0, i3, i2,
-                b.adj1, t1, a.adj2,
-                b.con1, -1, a.con2);
-
-            // t1 becomes (i3, i1, i2)
-            crcs[t1] = Circle.From3Points(x3, y3, x1, y1, x2, y2);
-            tris[t1] = new Triangle(i3, i1v, i2,
-                b.adj2, a.adj1, triangleIndex,
-                b.con2, a.con1, -1);
-
-            SetAdjacent(a.adj1, i2, i1v, t1);         
-            SetAdjacent(b.adj1, i3, i0, triangleIndex);
-
-            Span<VertexMeta> meta = VertexMeta();
-            meta[i0].triangle = triangleIndex;
-            meta[i2].triangle = triangleIndex;
-            meta[i3].triangle = triangleIndex;
-            meta[i1v].triangle = t1;
-
-            ReplaceConstraintSegment(a.con0, i3, i2, triangleIndex);
-            ReplaceConstraintSegment(b.con0, i2, i3, t1);
-
-            s_new[0] = triangleIndex;
-            s_new[1] = t1;
-            return 2;
-        }
-        #endregion FLIPPING
 
         #region SPLITTING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -463,7 +353,7 @@ namespace TriUgla.Mesher
                     if (!CanFlip(ti, ei, out bool should) || !should)
                         continue;
 
-                    int changed = Flip(ti, ei, forceFlip: false);
+                    int changed = FlipCCW(ti, ei);
                     if (changed == 0) continue;
 
                     totalFlips++;

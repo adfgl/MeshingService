@@ -20,7 +20,10 @@
                 curr.vtx2 == _vertex ? curr.adj2 :
                 -1;
 
-            if (next == -1 || next == _startTriangle) return false;
+            if (next == -1 || next == _startTriangle)
+            {
+                return false;
+            }
             _current = next;
             return true;
         }

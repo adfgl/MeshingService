@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TriUgla.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0c0ba7b3c0a6d71de008a5fa48c569fcdb9b537")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3f4f980d6a1babc80183ca932fcbbcd9679062a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TriUgla.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TriUgla.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

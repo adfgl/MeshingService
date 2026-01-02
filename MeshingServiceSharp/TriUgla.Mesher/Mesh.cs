@@ -1,17 +1,27 @@
-﻿namespace TriUgla.Mesher
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace TriUgla.Mesher
 {
     public sealed class Mesh
     {
         public List<Triangle> Triangles { get; } = new List<Triangle>();
         public List<Circle> Circles { get; } = new List<Circle>();
-        public Edges Edges { get; } = new Edges();
+        public List<Edge> Edges { get; } = new List<Edge>();
         public Vertices Vertices { get; } = new Vertices();
-    }
 
-    public sealed class Edges
-    {
-        public List<Edge> Items { get; } = new List<Edge>();
-        public List<EdgeMeta> Meta { get; } = new List<EdgeMeta>();
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Span<Triangle> TrianglesSpan() => CollectionsMarshal.AsSpan(Triangles);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Span<Vertex> VerticesSpan() => CollectionsMarshal.AsSpan(Vertices.Items);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Span<VertexMeta> VertexMetaSpan() => CollectionsMarshal.AsSpan(Vertices.Meta);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Span<Circle> CirclesSpan() => CollectionsMarshal.AsSpan(Circles);
+
     }
 
     public sealed class Vertices

@@ -28,7 +28,7 @@ namespace TriUgla.Mesher
             start == t.vtx2 ? (end == t.vtx0 ? 2 : end == t.vtx1 ? 1 : -1) :
             -1;
 
-        public readonly static int VertexIndexOppositeToEdge(
+        public static int VertexIndexOppositeToEdge(
             ReadOnlySpan<Triangle> triangles,
             int triangleIndex, int edgeStart, int edgeEnd)
         {
@@ -39,11 +39,11 @@ namespace TriUgla.Mesher
             return VertexIndexOppositeToEdge(in adjacent, edgeEnd, edgeStart);
         }
 
-        public readonly static int VertexIndexOppositeToEdge(
+        public static int VertexIndexOppositeToEdge(
             in Triangle triangle,
             int edgeStart, int edgeEnd)
         {
-            int edgeIndex = IndexOf(edgeStart, edgeEnd);
+            int edgeIndex = IndexOf(in triangle, edgeStart, edgeEnd);
             if (edgeIndex == -1)
             {
                 throw new Exception();
@@ -54,7 +54,7 @@ namespace TriUgla.Mesher
                 triangle.vtx1;
         }
 
-        public readonly static int AdjacentIndex(
+        public static int AdjacentIndex(
             in Triangle triangle,
             int edgeStart, int edgeEnd)
         {
@@ -70,7 +70,7 @@ namespace TriUgla.Mesher
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly OrientEdge1()
+        public readonly Triangle OrientEdge1()
         {
             return new Triangle(
                        vtx1, vtx2, vtx0,
@@ -79,7 +79,7 @@ namespace TriUgla.Mesher
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly OrientEdge2()
+        public readonly Triangle OrientEdge2()
         {
             return new Triangle(
                       vtx2, vtx0, vtx1,

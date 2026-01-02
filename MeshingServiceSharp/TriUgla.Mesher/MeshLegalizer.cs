@@ -29,37 +29,45 @@ namespace TriUgla.Mesher
             return LegalizeCore(_processor, stack, affected);
         }
 
+        readonly struct Edge(int start, int end)
+        {
+            public readonly int start = start, end = end;
+        }
+
         int LegalizeCore(MeshProcessor processor, Stack<int> stack, Stack<int>? affected)
         {
             int totalFlips = 0;
             Span<Triangle> tris = Triangles();
 
             Dictionary<ulong, int> flipCount = new Dictionary<ulong, int>(64);
+
+            Edge[] edges = new Edge[3];
             while (stack.Count > 0)
             {
                 int ti = stack.Pop();
                 affected?.Push(ti);
 
                 ref Triangle t = ref tris[ti];
-                int[] indices = [t.vtx0, t.vtx1, t.vtx2];
-                for (int ei = 0; ei < 3; ei++)
+                edges[0] = new Edge(t.vtx0, t.vtx1);
+                edges[1] = new Edge(t.vtx1, t.vtx2);
+                edges[2] = new Edge(t.vtx2, t.vtx0);
+
+                for (int edgeIndex = 0; edgeIndex < 3; edgeIndex++)
                 {
-                    int u = indices[ei];
-                    int v = indices[(ei + 1) % 3];
-                    ulong key = MeshProcessor.Key(u, v);
+                    Edge edge = edges[edgeIndex];
+                    ulong key = MeshProcessor.Key(edge.start, edge.end);
 
                     flipCount.TryGetValue(key, out int flipsMade);
                     if (flipsMade >= MAX_FLIPS_PER_DIAGONAL)
                         continue;
 
-                    if (!processor.CanFlip(ti, ei, out bool should) || !should)
+                    if (!processor.CanFlip(ti, edgeIndex, out bool should) || !should)
                         continue;
 
                     totalFlips++;
                     flipCount[key] = (byte)(flipsMade + 1);
 
-                    int flippedCount = processor.Flip(ti, ei, forceFlip: false);
-
+                    int flippedCount = processor.FlipCCW(ti, edgeIndex);
                     for (int i = 0; i < flippedCount; i++)
                     {
                         int idx = processor.New[i];
@@ -72,7 +80,6 @@ namespace TriUgla.Mesher
                     break;
                 }
             }
-
             return totalFlips;
         }
     }

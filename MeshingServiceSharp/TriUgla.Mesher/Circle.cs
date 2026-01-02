@@ -53,12 +53,14 @@ namespace TriUgla.Mesher
             return dx * dx + dy * dy < radiusSqr;
         }
 
+        public bool Contains(in Vertex vertex) => Contains(vertex.x, vertex.y);
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static readonly Circle From2Points(in Vertex a, in Vertex b) 
+        public static Circle From2Points(in Vertex a, in Vertex b) 
             => From2Points(a.x, a.y, b.x, b.y);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static readonly Circle From3Points(in Vertex a, in Vertex b, in Vertex c) 
+        public static Circle From3Points(in Vertex a, in Vertex b, in Vertex c) 
             => From3Points(a.x, a.y, b.x, b.y, c.x, c.y);
     }
 }

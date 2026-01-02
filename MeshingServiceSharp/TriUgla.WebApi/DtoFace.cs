@@ -1,6 +1,9 @@
-public sealed class DtoFace
+namespace TriUgla.WebApi
 {
-    public string? Id { get; set; }
-    public DtoEdge[] Edges { get; set; }
-    public double Area { get; set; }
+    public sealed class DtoFace
+    {
+        public string? Id { get; set; }
+        public DtoEdge[] Edges { get; set; }
+        public double Area { get; set; }
+    }
 }

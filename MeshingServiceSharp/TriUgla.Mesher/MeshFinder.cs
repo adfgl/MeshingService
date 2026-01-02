@@ -4,36 +4,7 @@ using System.Runtime.InteropServices;
 namespace TriUgla.Mesher
 {
 
-    public enum SearchStatus
-    {
-        Found, NotFound, Aborted
-    }
-
-    public readonly struct SearchResult(
-        SearchStatus status,
-        int steps, 
-        int triangle, 
-        int edge, 
-        int vertex)
-    {
-        public readonly SearchStatus status = status;
-        public readonly int steps = steps, triangle = triangle, edge = edge, vertex = vertex;
-
-        public static SearchResult Edge(int steps, int triangle, int edge)
-            => new (SearchStatus.Found, steps, triangle, edge, -1);
-
-        public static SearchResult Vertex(int steps, int triangle, int vertex)
-            => new (SearchResult.Found, steps, triangle, -1, vertex);
-
-        public static SearchResult Triangle(int steps, int triangle)
-            => new (SearchResult.Found, steps, triangle, -1, -1);
-
-        public static SearchResult Aborted(int steps = 0) 
-            => new (SearchStatus.Aborted, steps, -1, -1, -1);
-
-        public static SearchResult NotFound(int steps = 0) 
-            => new (SearchStatus.NotFound, steps, -1, -1, -1);
-    }
+ 
     public sealed class MeshFinder(Mesh mesh, double eps = 1e-6)
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -66,7 +37,7 @@ namespace TriUgla.Mesher
                 int ei = finder(in t, start, end);
                 if (ei != -1) 
                 {
-                    return SearchResult.Edge(ti, ei);
+                    return SearchResult.Edge(steps, ti, ei);
                 }
                 steps++;
             }
@@ -81,64 +52,16 @@ namespace TriUgla.Mesher
         public SearchResult FindEdgeInvariant(int start, int end)
             => FindEdgeCore(start, end, Triangle.IndexOfInvariant);
 
-        readonly struct TriangleEdge(
-            int start, int end, int adjacent)
-        {
-            public readonly int start = start, end = end, adjacent = adjacent;
-        }
-
-        public static bool IsZero(double value, double eps)
-        {
-            return value <= eps && value >= -eps;
-        }
-
-        public static bool AreClose(
-            double x0, double y0, 
-            double x1, double y1, 
-            double eps2)
-        {
-            double dx = x1 - x0;
-            double dy = y1 - y0;
-            return dx * dx + dy * dy <= eps2;
-        }
-
-        public static bool InRectangle(
-            double minX, double minY,
-            double maxX, double maxY,
-            double x, double y)
-        {
-            double t;
-            if (minX > maxX)
-            {
-                t = minX;
-                minX = maxX;
-                maxX = t;
-            }
-
-            if (minY > maxY)
-            {
-                t = minY;
-                minY = maxY;
-                maxY = t;
-            }
-            
-            return 
-                minX < x && x < maxX &&
-                minY < y && y < maxY;
-        }
-
-        public static int ExitEdgeIndex(
-            TriangleEdge[] edges, Span<Vertex> vertices, out double minCross)
+        public static int ExitEdgeIndex(TriangleEdge[] edges, Span<Vertex> vertices, double x, double y, out double minCross)
         {
             minCross = double.MaxValue;
             int index = -1;
+
+            Vertex vtx = new Vertex(x, y, 0);
             for (int i = 0; i < edges.Length; i++)
             {
-                var edge = edges[i];
-                var (xs, ys) = nodes[edge.start];
-                var (xe, ye) = nodes[edge.end];
-
-                double cross = GeometryHelper.Cross(xs, ys, ex, ey, x, y);
+                TriangleEdge edge = edges[i];
+                double cross = GeometryHelper.Cross(in vertices[edge.start], in vertices[edge.end], in vtx);
                 if (cross < minCross)
                 {
                     minCross = cross;
@@ -148,7 +71,7 @@ namespace TriUgla.Mesher
             return index;
         }
 
-        public static TringleEdge[] Edges(
+        public static TriangleEdge[] Edges(
             TriangleEdge[] edges, in Triangle t)
         {
             edges[0] = new (t.vtx0, t.vtx1, t.adj0);
@@ -177,33 +100,33 @@ namespace TriUgla.Mesher
             {
                 path?.Add(current);
                 
-                readonly ref Triangle t = ref tris[triangle];
-                int exitEdgeIndex = ExitEdgeIndex(Edges(edges, in t), nodes, out double minCross);
+                ref readonly Triangle t = ref tris[current];
+                int exitEdgeIndex = ExitEdgeIndex(Edges(edges, in t), nodes, x, y, out double minCross);
                 
-                var exitEdge = edges[exitEdgeIndex];
-                if (IsZero(minCross, eps))
+                TriangleEdge exitEdge = edges[exitEdgeIndex];
+                if (GeometryHelper.IsZero(minCross, eps))
                 {
                     var (xs, ys) = nodes[exitEdge.start];
-                    if (AreClose(x, y, xs, ys, epsSqr))
+                    if (GeometryHelper.AreClose(x, y, xs, ys, epsSqr))
                     {
-                        return SearchResult.Vertex(current, exitEdge.start);
+                        return SearchResult.Vertex(steps, current, exitEdge.start);
                     }
 
                     var (xe, ye) = nodes[exitEdge.end];
-                    if (AreClose(x, y, xe, ye, epsSqr))
+                    if (GeometryHelper.AreClose(x, y, xe, ye, epsSqr))
                     {
-                        return SearchResult.Vertex(current, exitEdge.end);
+                        return SearchResult.Vertex(steps, current, exitEdge.end);
                     }
 
-                    if (InRectangle(xs, ys, xe, ye, x, y))
+                    if (GeometryHelper.InRectangle(xs, ys, xe, ye, x, y))
                     {
-                        return SearchResult.Edge(current, exitEdgeIndex);
+                        return SearchResult.Edge(steps, current, exitEdgeIndex);
                     }
                 }
 
                 if (minCross > 0)
                 {
-                    return SearchResult.Triangle(current);
+                    return SearchResult.Triangle(steps, current);
                 }
 
                 if (exitEdge.adjacent == -1)
@@ -214,5 +137,42 @@ namespace TriUgla.Mesher
             }
             return SearchResult.Aborted(steps);
         }
+
+        public readonly struct TriangleEdge(
+        int start, int end, int adjacent)
+        {
+            public readonly int start = start, end = end, adjacent = adjacent;
+        }
+    }
+
+    public enum SearchStatus
+    {
+        Found, NotFound, Aborted
+    }
+
+    public readonly struct SearchResult(
+        SearchStatus status,
+        int steps,
+        int triangle,
+        int edge,
+        int vertex)
+    {
+        public readonly SearchStatus status = status;
+        public readonly int steps = steps, triangle = triangle, edge = edge, vertex = vertex;
+
+        public static SearchResult Edge(int steps, int triangle, int edge)
+            => new(SearchStatus.Found, steps, triangle, edge, -1);
+
+        public static SearchResult Vertex(int steps, int triangle, int vertex)
+            => new(SearchStatus.Found, steps, triangle, -1, vertex);
+
+        public static SearchResult Triangle(int steps, int triangle)
+            => new(SearchStatus.Found, steps, triangle, -1, -1);
+
+        public static SearchResult Aborted(int steps = 0)
+            => new(SearchStatus.Aborted, steps, -1, -1, -1);
+
+        public static SearchResult NotFound(int steps = 0)
+            => new(SearchStatus.NotFound, steps, -1, -1, -1);
     }
 }

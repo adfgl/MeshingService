@@ -6,9 +6,9 @@ namespace TriUgla.Mesher
     {
         public readonly int start = start, end = end;
         public readonly int triangle = triangle;
-        public readonly string? id;
+        public readonly string? id = id;
 
-        public readonly static void Split(
+        public static void Split(
             in Edge edge, 
             int vertex, 
             int triangle1,

@@ -4,6 +4,46 @@ namespace TriUgla.Mesher
 {
     public static class GeometryHelper
     {
+        public static bool IsZero(double value, double eps)
+        {
+            return value <= eps && value >= -eps;
+        }
+
+        public static bool AreClose(
+            double x0, double y0,
+            double x1, double y1,
+            double eps2)
+        {
+            double dx = x1 - x0;
+            double dy = y1 - y0;
+            return dx * dx + dy * dy <= eps2;
+        }
+
+        public static bool InRectangle(
+            double minX, double minY,
+            double maxX, double maxY,
+            double x, double y)
+        {
+            double t;
+            if (minX > maxX)
+            {
+                t = minX;
+                minX = maxX;
+                maxX = t;
+            }
+
+            if (minY > maxY)
+            {
+                t = minY;
+                minY = maxY;
+                maxY = t;
+            }
+
+            return
+                minX < x && x < maxX &&
+                minY < y && y < maxY;
+        }
+
         public static double Interpolate(
             double ax, double ay, double a, 
             double bx, double by, double b,
@@ -29,36 +69,23 @@ namespace TriUgla.Mesher
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static double Cross(
-            double ax, double ay,
-            double bx, double by,
-            double cx, double cy)
+        public static double Cross(in Vertex a, in Vertex b, in Vertex c)
+            => (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AreCollinear(in Vertex a, in Vertex b, in Vertex c, double eps)
         {
-            return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
+            return Math.Abs(Cross(in a, in b, in c)) <= eps;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AreCollinear(
-            double ax, double ay,
-            double bx, double by,
-            double cx, double cy,
-            double eps)
-        {
-            return Math.Abs(Cross(ax, ay, bx, by, cx, cy)) <= eps;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsConvex(
-            double ax, double ay,
-            double bx, double by,
-            double cx, double cy,
-            double dx, double dy)
+        public static bool IsConvex(in Vertex a, in Vertex b, in Vertex c, in Vertex d)
         {
             return
-                Cross(ax, ay, bx, by, cx, cy) > 0 &&
-                Cross(bx, by, cx, cy, dx, dy) > 0 &&
-                Cross(cx, cy, dx, dy, ax, ay) > 0 &&
-                Cross(dx, dy, ax, ay, bx, by) > 0;
+                Cross(in a, in b, in c) > 0 &&
+                Cross(in b, in c, in d) > 0 &&
+                Cross(in c, in d, in a) > 0 &&
+                Cross(in d, in a, in b) > 0;
         }
 
         public static bool PointOnSegment(
@@ -94,7 +121,7 @@ namespace TriUgla.Mesher
         }
             
 
-        public readonly static bool Intersect(
+        public static bool Intersect(
             double p1x, double p1y,
             double p2x, double p2y,
             double q1x, double q1y,

@@ -7,10 +7,9 @@ namespace TriUgla.Mesher
 
         public Shape(List<Polygon> contours, List<Polygon>? holes = null, double eps = 1e-6)
         {
-            _contours = new List<Polygon>(contours.Count);
-            foreach (var contour in contours)
+            if (contours.Count == 0)
             {
-                _contours.Add(contour);
+                throw new ArgumentException("Need at least one contour.");
             }
 
             List<Polygon> holesKeep;
@@ -23,37 +22,24 @@ namespace TriUgla.Mesher
                 holesKeep = new List<Polygon>(holes.Count);
                 foreach (Polygon hole in holes)
                 {
-                    if (contour.Contains(hole, eps) || contour.Intersects(hole))
+                    if (contours.Any(o => o.ContainsOrIntersects(hole, eps)) &&
+                        !holesKeep.Any(o => o.Contains(hole, eps)))
                     {
-                        bool discard = false;
-                        foreach (Polygon holeKeep in holesKeep)
-                        {
-                            if (holeKeep.Contains(hole, eps))
-                            {
-                                discard = true;
-                                break;
-                            }
-                        }
-
-                        if (!discard)
-                        {
-                            holesKeep.Add(hole);
-                        }
+                        holesKeep.Add(hole);
                     }
                 }
             }
-
-            Contour = contour;
             _holes = holesKeep;
+            _contours = contours;
             Eps = eps;  
         }
 
-        public List<Contour> Contour { get; }
+        public List<Polygon> Contours => _contours;
         public List<Polygon> Holes => _holes;
         public double Eps { get; set; }
 
         public bool Contains(double x, double y) =>
-                Contour.Contains(x, y, Eps) &&
+                Contours.Any(hole => hole.Contains(x, y, Eps)) &&
                 !Holes.Any(hole => hole.Contains(x, y, Eps));
     }
 }

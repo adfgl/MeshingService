@@ -1,24 +1,26 @@
-public static class Intersection
+namespace TriUgla.Mesher
 {
-    public readonly static bool Intersect(
-        in Vertex p1, in Vertex p2,
-        in Vertex q1, in Vertex q2,
-        out Vertex intersection)
+    public static class Intersection
     {
-        if (Intersect(
-            p1.x, p1.y,
-            p2.x, p2.y,
-            out double x, out double y))
+        public static bool Intersect(
+            in Vertex p1, in Vertex p2,
+            in Vertex q1, in Vertex q2,
+            out Vertex intersection)
         {
-            double z = Interpolation.ZAtXYAlongSegment(p1, p2, x, y);
-            intercetion = new Vertex(x, y, z);
-            return true;
+            if (Intersect(
+                p1.x, p1.y, p2.x, p2.y,
+                q1.x, q1.y, q2.x, q2.y,
+                out double x, out double y))
+            {
+                double z = Interpolation.ZAtXYAlongSegment(p1, p2, x, y);
+                intersection = new Vertex(x, y, z);
+                return true;
+            }
+            intersection = default;
+            return false;
         }
-        intersection = default;
-        return false;
-    }
-
-    public readonly static bool Intersect(
+    
+        public static bool Intersect(
             double p1x, double p1y,
             double p2x, double p2y,
             double q1x, double q1y,
@@ -64,4 +66,5 @@ public static class Intersection
             y = p1y + u * c;
             return true;
         }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -32,15 +33,22 @@ namespace TriUgla.Mesher
         }
         public Mesh Mesh { get; set; }
 
-        int _lastFound = -1;
+        int _lastFoundTriangle = -1;
 
         public int TryInsert(double x, double y, double seed, string? id)
         {
-            var (ti, ei, vi) = _finder.FindContaining(x, y, _lastFound);
-            _lastFound = ti;
-            if (ti == -1) return -1;
-            if (vi != -1) return vi;
-            return Insert(x, y, seed, id, ti, ei);
+            SearchResult searchResult = _finder.FindContaining(x, y, _lastFoundTriangle);
+            if (searchResult.status != SearchStatus.Found)
+            {
+                return -1;
+            }
+
+            _lastFoundTriangle = searchResult.triangle;
+            if (searchResult.vertex != -1)
+            {
+                return searchResult.vertex;
+            }
+            return Insert(x, y, seed, id, _lastFoundTriangle, searchResult.edge);
         }
 
         public void TryInsert(
@@ -54,12 +62,12 @@ namespace TriUgla.Mesher
             Insert(id, si, ei, alwaysSplit);
         }
 
-        public void Insert(string? id, int start, int end, bool alwaysSplit = false)
+        public void Insert(string? id, int startIndex, int endIndex, bool alwaysSplit = false)
         {
             Queue<(int, int)> queue = new Queue<(int, int)>(8);
             List<int> toLegalize = new List<int>(128);
 
-            queue.Enqueue((start, end));
+            queue.Enqueue((startIndex, endIndex));
 
             double eps = Eps;
             double epsSqr = eps * eps;
@@ -70,15 +78,7 @@ namespace TriUgla.Mesher
             while (queue.Count > 0)
             {
                 var (a, b) = queue.Dequeue();
-                var (ax, ay) = verts[a];
-                var (bx, by) = verts[b];
-
-                double abx = bx - ax;
-                double aby = by - ay;
-                if (abx * abx + aby * aby <= epsSqr)
-                {
-                    continue;
-                }
+                if (a == b) continue;
 
                 if (SetConstraint(a, b, id))
                 {
@@ -87,62 +87,46 @@ namespace TriUgla.Mesher
                 }
 
                 int ti = OrientedEntranceTriangle(a, b);
-                Triangle t = tris[ti];
+                ref readonly Triangle t = ref tris[ti];
 
-                int next = t.vtx1;
-                var (nx, ny) = verts[next];
-                if (GeometryHelper.AreCollinear(ax, ay, bx, by, nx, ny, eps))
+                int currIndex = t.vtx0;
+                int nextIndex = t.vtx1;
+                int prevIndex = t.vtx2;
+
+                Debug.Assert(currIndex == a);
+
+                ref readonly Vertex start = ref verts[currIndex];
+                ref readonly Vertex next = ref verts[nextIndex];
+                ref readonly Vertex prev = ref verts[prevIndex];
+                ref readonly Vertex end = ref verts[b];
+
+                if (GeometryHelper.AreCollinear(in start, in end, in next, eps))
                 {
-                    SetConstraint(a, next, id);
-
-                    queue.Enqueue((a, next));
-                    queue.Enqueue((next, b));
+                    queue.Enqueue((a, nextIndex));
+                    queue.Enqueue((nextIndex, b));
                     continue;
                 }
 
-                int prev = t.vtx2;
-                var (px, py) = verts[prev];
-                if (GeometryHelper.AreCollinear(ax, ay, bx, by, px, py, eps))
+                if (GeometryHelper.AreCollinear(in start, in end, in prev, eps))
                 {
-                    queue.Enqueue((a, prev));
-                    queue.Enqueue((prev, b));
+                    queue.Enqueue((a, prevIndex));
+                    queue.Enqueue((prevIndex, b));
                     continue;
                 }
 
-                if (!GeometryHelper.Intersect(ax, ay, bx, by, nx, ny, px, py, out double x, out double y))
+                if (!Intersection.Intersect(in start, in end, in next, in prev, out Vertex inter))
                 {
                     throw new Exception("Expected intersection");
                 }
 
-                Triangle adjacent = tris[t.adj1];
-                int edge = Triangle.IndexOf(in adjacent, prev, next);
-                if (edge == -1)
-                    throw new Exception($"Adjacent triangle {t.adj1} missing edge ({prev},{next}).");
-
-                if (edge != 0)
-                    adjacent = adjacent.Orient(edge);
-
-                int opposite = adjacent.vtx2;
+                int opposite = Triangle.VertexIndexOppositeToEdge(tris, ti, nextIndex, prevIndex);
 
                 int count;
                 if (alwaysSplit || !_processor.CanFlip(ti, 1, out _))
                 {
-                    List<VertexMeta> metas = Mesh.Vertices.Meta;
-                    double seed1 = GeometryHelper.Interpolate(
-                            ax, ay, metas[a].seed,
-                            bx, by, metas[b].seed,
-                            x, y);
-
-                    double seed2 = GeometryHelper.Interpolate(
-                            nx, ny, metas[next].seed,
-                            px, py, metas[prev].seed,
-                            x, y);
-
-                    double seed = (seed1 + seed2) * 0.5;
-
                     int vertexIndex = verts.Length;
-                    Mesh.Vertices.Items.Add(new Vertex(x, y));
-                    Mesh.Vertices.Meta.Add(new VertexMeta(-1, null, seed));
+                    Mesh.Vertices.Items.Add(inter);
+                    Mesh.Vertices.Meta.Add(new VertexMeta(-1, null));
                     verts = CollectionsMarshal.AsSpan(Mesh.Vertices.Items);
 
                     count = _processor.SplitEdge(ti, 1, vertexIndex);
@@ -154,7 +138,7 @@ namespace TriUgla.Mesher
                 }
                 else
                 {
-                    count = _processor.Flip(ti, 1, false);
+                    count = _processor.FlipCCW(ti, 1);
 
                     queue.Enqueue((a, opposite));
                     queue.Enqueue((opposite, b));
@@ -167,20 +151,20 @@ namespace TriUgla.Mesher
             _legalizer.Legalize(CollectionsMarshal.AsSpan(toLegalize));
         }
 
-        public int OrientedEntranceTriangle(int start, int end)
+        public int OrientedEntranceTriangle(int startIndex, int endIndex)
         {
             Span<Vertex> verts = CollectionsMarshal.AsSpan(Mesh.Vertices.Items);
             Span<Triangle> tris = Triangles();
             double eps = Eps;
-            var (ex, ey) = verts[end];
-            int startTri = Mesh.Vertices.Meta[start].triangle;
-            Circler walker = new Circler(tris, startTri, start);
+            ref readonly Vertex end = ref verts[endIndex];
+            int startTri = Mesh.Vertices.Meta[startIndex].triangle;
+            Circler walker = new Circler(tris, startTri, startIndex);
             do
             {
                 int tIndex = walker.CurrentTriangle;
                 Triangle t = tris[tIndex];
 
-                int edge = Triangle.IndexOf(in t, start);
+                int edge = Triangle.IndexOf(in t, startIndex);
 
                 int v0, v1, v2;
                 switch (edge)
@@ -192,12 +176,12 @@ namespace TriUgla.Mesher
                         throw new InvalidOperationException($"Invalid edge index {edge} in triangle {tIndex}.");
                 }
 
-                Vertex a = verts[v0];
-                Vertex b = verts[v1];
-                Vertex c = verts[v2];
+                ref readonly Vertex a = ref verts[v0];
+                ref readonly Vertex b = ref verts[v1];
+                ref readonly Vertex c = ref verts[v2];
 
-                if (GeometryHelper.Cross(a.x, a.y, b.x, b.y, ex, ey) < -eps) continue;
-                if (GeometryHelper.Cross(c.x, c.y, a.x, a.y, ex, ey) < -eps) continue;
+                if (GeometryHelper.Cross(in a, in b, in end) < -eps) continue;
+                if (GeometryHelper.Cross(in c, in a, in end) < -eps) continue;
 
                 if (edge != 0)
                 {
@@ -213,8 +197,8 @@ namespace TriUgla.Mesher
         public int Insert(double x, double y, double seed, string? id, int triangle, int edge, Stack<int>? affected = null)
         {
             int vertexIndex = Mesh.Vertices.Items.Count;
-            Mesh.Vertices.Items.Add(new Vertex(x, y));
-            Mesh.Vertices.Meta.Add(new VertexMeta(triangle, id, seed));
+            Mesh.Vertices.Items.Add(new Vertex(x, y, seed));
+            Mesh.Vertices.Meta.Add(new VertexMeta(triangle, id));
 
             int count = _processor.Split(triangle, edge, vertexIndex);
             int legalized = _legalizer.Legalize(_processor.New, count, affected);
@@ -248,8 +232,7 @@ namespace TriUgla.Mesher
             if ((uint)edge > 2u) throw new ArgumentOutOfRangeException(nameof(edge));
 
             List<Triangle> tris = Mesh.Triangles;
-            List<Edge> edges = Mesh.Edges.Items;
-            List<EdgeMeta> metas = Mesh.Edges.Meta;
+            List<Edge> edges = Mesh.Edges;
 
             int baseId = edges.Count;
             Triangle tri = tris[triangle];
@@ -279,8 +262,7 @@ namespace TriUgla.Mesher
                     break;
             }
 
-            edges.Add(new Edge(start, end));
-            metas.Add(new EdgeMeta(triangle, id));
+            edges.Add(new Edge(start, end, triangle, id));
             tris[triangle] = tri;
 
             if (adjacent == -1)
@@ -300,8 +282,7 @@ namespace TriUgla.Mesher
                 default: triAdj.con2 = backId; break;
             }
 
-            edges.Add(new Edge(end, start));
-            metas.Add(new EdgeMeta(adjacent, id));
+            edges.Add(new Edge(end, start, adjacent, id));
             tris[adjacent] = triAdj;
         }
     }
