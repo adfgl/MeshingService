@@ -1,7 +1,7 @@
 public static class Interpolation
 {
     public static readonly double ZAtXYAlongSegment(
-        Vertex v0, Vertex v1, double x, double y)
+        in Vertex v0, in Vertex v1, double x, double y)
     {
         double dx = v1.x - v0.x;
         double dy = v1.y - v0.y;
@@ -17,7 +17,7 @@ public static class Interpolation
     }
 
     public static readonly double ZAtXYInTriangle(
-        Vertex v0, Vertex v1, Vertex v2,
+        in Vertex v0, in Vertex v1, Vertex v2,
         double x, double y)
     {
         double e0x = v1.x - v0.x;
