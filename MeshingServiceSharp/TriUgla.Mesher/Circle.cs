@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -54,11 +54,11 @@ namespace TriUgla.Mesher
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Circle From2Points(in Vertex a, in Vertex b) 
+        public static readonly Circle From2Points(in Vertex a, in Vertex b) 
             => From2Points(a.x, a.y, b.x, b.y);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Circle From3Points(in Vertex a, in Vertex b, in Vertex c) 
+        public static readonly Circle From3Points(in Vertex a, in Vertex b, in Vertex c) 
             => From3Points(a.x, a.y, b.x, b.y, c.x, c.y);
     }
 }
