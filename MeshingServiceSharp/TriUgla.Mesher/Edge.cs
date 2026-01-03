@@ -8,25 +8,5 @@ namespace TriUgla.Mesher
         public readonly int triangle = triangle;
         public readonly string? id = id;
 
-        public static void Split(
-            in Edge edge, 
-            int vertex, 
-            int triangle1,
-            int triangle2,
-            out Edge edge1,
-            out Edge edge2)
-        {
-            edge1 = new Edge(
-                edge.start, 
-                vertex, 
-                triangle1,
-                edge.id);
-
-            edge2 = new Edge(
-                vertex,
-                edge.end,
-                triangle2,
-                edge.id);
-        }
     }
 }

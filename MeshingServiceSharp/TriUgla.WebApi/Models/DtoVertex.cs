@@ -1,4 +1,4 @@
-namespace TriUgla.WebApi
+namespace TriUgla.WebApi.Models
 {
     public sealed class DtoVertex
     {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TriUgla.Mesher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3f4f980d6a1babc80183ca932fcbbcd9679062a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fcba14092c59db8169cdd7f64734ba066c4822c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TriUgla.Mesher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TriUgla.Mesher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

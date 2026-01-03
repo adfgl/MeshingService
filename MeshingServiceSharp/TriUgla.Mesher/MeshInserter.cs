@@ -5,19 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace TriUgla.Mesher
 {
-    public sealed class MeshInserter
+    public sealed class MeshInserter(Mesh mesh)
     {
-        readonly MeshProcessor _processor;
-        readonly MeshLegalizer _legalizer;
-        readonly MeshFinder _finder;
-
-        public MeshInserter(Mesh mesh, MeshProcessor? processor = null)
-        {
-            _processor = processor ?? new MeshProcessor(mesh);
-            _legalizer = new MeshLegalizer(mesh, _processor);
-            _finder = new MeshFinder(mesh);
-            Mesh = mesh;
-        }
+        readonly MeshFinder _finder = new MeshFinder(mesh);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         Span<Triangle> Triangles() => CollectionsMarshal.AsSpan(Mesh.Triangles);
@@ -31,7 +21,7 @@ namespace TriUgla.Mesher
                 _finder.Eps = field = value;
             }
         }
-        public Mesh Mesh { get; set; }
+        public Mesh Mesh { get; set; } = mesh;
 
         int _lastFoundTriangle = -1;
 
