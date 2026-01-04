@@ -3,28 +3,18 @@ using System.Runtime.InteropServices;
 
 namespace TriUgla.Mesher
 {
-
- 
-    public sealed class MeshFinder(Mesh mesh, double eps = 1e-6)
+    public static class MeshFinder
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        Span<Triangle> Triangles() => CollectionsMarshal.AsSpan(mesh.Triangles);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        Span<Vertex> Vertices() => CollectionsMarshal.AsSpan(mesh.Vertices.Items);
-
-        public double Eps { get; set; } = eps;
-
         public delegate int EdgeFinder(in Triangle t, int a, int b);
 
-        public SearchResult FindEdgeCore(int start, int end, EdgeFinder finder)
+        public static SearchResult FindEdgeCore(this Mesh mesh, int start, int end, EdgeFinder finder)
         {
             if (start == end) 
             {
                 return SearchResult.Aborted();
             }
 
-            ReadOnlySpan<Triangle> tris = Triangles();
+            ReadOnlySpan<Triangle> tris = mesh.TrianglesSpan();
             int triangleIndex = mesh.Vertices.Meta[start].triangle;
             Circler circler = new Circler(tris, triangleIndex, start);
             
@@ -46,10 +36,10 @@ namespace TriUgla.Mesher
             return SearchResult.NotFound(steps);
         }
 
-        public SearchResult FindEdge(int start, int end)
+        public static SearchResult FindEdge(int start, int end)
             => FindEdgeCore(start, end, Triangle.IndexOf);
 
-        public SearchResult FindEdgeInvariant(int start, int end)
+        public static SearchResult FindEdgeInvariant(int start, int end)
             => FindEdgeCore(start, end, Triangle.IndexOfInvariant);
 
         public static int ExitEdgeIndex(TriangleEdge[] edges, Span<Vertex> vertices, double x, double y, out double minCross)
@@ -80,10 +70,10 @@ namespace TriUgla.Mesher
             return edges;
         }
 
-        public SearchResult FindContaining(double x, double y, int searchStart = -1, List<int>? path = null)
+        public static SearchResult FindContaining(this Mesh mesh, double x, double y, int searchStart = -1, List<int>? path = null, double eps = 1e-6)
         {
-            Span<Triangle> tris = Triangles();
-            Span<Vertex> nodes = Vertices();
+            Span<Triangle> tris = mesh.TrianglesSpan();
+            Span<Vertex> nodes = mesh.VerticesSpan();
 
             int n = tris.Length;
             if (n == 0) return SearchResult.NotFound();
