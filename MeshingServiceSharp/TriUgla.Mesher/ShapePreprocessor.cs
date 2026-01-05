@@ -20,6 +20,11 @@ public sealed class ShapePreprocessor
         List<Vertex> vertices = new List<Vertex>();
     }
 
+    public static void Process(Shape shape, List<Segment> conEdges, List<Vertex> conVertices)
+    {
+
+    }
+
     public static double SqeLen(in Vertex a, in Vertex b)
     {
         double dx = a.x - b.x;
