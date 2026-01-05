@@ -51,6 +51,27 @@ public sealed class ShapePreprocessor
                         continue;
                     }
                     
+                    if (!ContainsExcept(shape.Contours, i)) segments.Add(item);
+                }  
+            }
+        }
+
+        int nh = shape.Holes.Count;
+        for (int i = 0; i < nh; i++)
+        {
+            var hole = shape.Holes[i];
+            for (int j = 0; j < hole.Vertices.Count - 1; j++)
+            {
+                var seg = new Segment(hole.Vertices[j], hole.Vertices[j + 1]);
+                var sub = Split(segments, in seg, eps);
+                foreach (var item in sub)
+                {
+                    var ctr = Vertex.Between(in item.start, in item.end);
+                    if (!shape.Contour.Any(o => o.Contains(ctr.x, ctr.y)))
+                    {
+                        continue;
+                    }
+                    
                     if (!ContainsExcept()) segments.Add(item);
                 }  
             }
