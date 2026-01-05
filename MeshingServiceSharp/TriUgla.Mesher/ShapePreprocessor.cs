@@ -52,10 +52,37 @@ public sealed class ShapePreprocessor
             if (shouldSplit && 
                 Intersect(seg.start, seg.end, other.start, other.end, out Vertex inter))
             {
+                bool duplicate = false;
+                foreach (var item in split)
+                {
+                    if (Vertex.Close(item, inter, eps))
+                    {
+                        duplicate = true;
+                        break;
+                    }
+                }
+                
                 Split(segs, i, inter);
-                split.Add(inter);
+                
+                if (!duplicate) split.Add(inter);
             }
         }
+
+        List<Segment> o = new();
+        o.Add(other);
+        foreach (var item in split)
+        {
+            for (int i = 0; i < o.Count; i++)
+            {
+                var s = o[i];
+                if (GeometryHelper.OnSegment(in s.start, in e.end, in s))
+                {
+                    Split(o, i, in item);
+                    break;
+                }
+            }
+        }
+        segs.AddRange(o);
     }
 
     public static void Split(List<Segment> segments, int index, in Vertex vtx)
