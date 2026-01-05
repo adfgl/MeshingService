@@ -47,7 +47,7 @@ namespace TriUgla.Mesher
         public Shape(List<Polygon> contours, List<Polygon>? holes = null, double eps = 1e-6)
         {
             _holes = holes is null ? new List<Polygon>() : ExtractValidHoles(contours, holes, eps);
-            _contours = ExtractValidContours(contours, _holes);
+            _contours = ExtractValidContours(contours, _holes, eps);
             Eps = eps;  
 
             if (_contours.Count == 0)
