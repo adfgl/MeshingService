@@ -1,8 +1,12 @@
 namespace TriUgla.Mesher
 {
-    public readonly struct Vertex(double x, double y, double z)
+    public struct Vertex(
+        double x, double y, double z, 
+        int triangle = -1, string? id = null)
     {
         public readonly double x = x, y = y, z = z;
+        public triangle = triangle;
+        public string? id = id;
 
         public void Deconstruct(out double x, out double y)
         {
