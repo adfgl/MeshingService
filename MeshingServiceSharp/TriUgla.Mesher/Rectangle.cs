@@ -84,7 +84,7 @@ namespace TriUgla.Mesher
             );
         }
 
-        public Rectangle Union(Rectangle other)
+        public Rectangle Union(in Rectangle other)
         {
             return new Rectangle(
                 Math.Min(minX, other.minX), Math.Min(minY, other.minY),
@@ -92,7 +92,7 @@ namespace TriUgla.Mesher
             );
         }
 
-        public bool Intersection(Rectangle other, out Rectangle intersection)
+        public bool Intersection(in Rectangle other, out Rectangle intersection)
         {
             double minX = Math.Max(this.minX, other.minX);
             double minY = Math.Max(this.minY, other.minY);
@@ -113,19 +113,19 @@ namespace TriUgla.Mesher
         public bool Contains(double x, double y) => x >= minX && x <= maxX && y >= minY && y <= maxY;
         public bool ContainsStrict(double x, double y) => x > minX && x < maxX && y > minY && y < maxY;
 
-        public bool Contains(Rectangle other) =>
+        public bool Contains(in Rectangle other) =>
             minX <= other.minX && minY <= other.minY &&
             maxX >= other.maxX && maxY >= other.maxY;
 
-        public bool ContainsStrict(Rectangle other) =>
+        public bool ContainsStrict(in Rectangle other) =>
             minX < other.minX && minY < other.minY &&
             maxX > other.maxX && maxY > other.maxY;
 
-        public bool Intersects(Rectangle other) =>
+        public bool Intersects(in Rectangle other) =>
             minX <= other.maxX && minY <= other.maxY &&
             maxX >= other.minX && maxY >= other.minY;
 
-        public bool IntersectsStrict(Rectangle other) =>
+        public bool IntersectsStrict(in Rectangle other) =>
             minX < other.maxX && minY < other.maxY &&
             maxX > other.minX && maxY > other.minY;
     }
