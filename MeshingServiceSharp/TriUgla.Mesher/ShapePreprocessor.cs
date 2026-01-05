@@ -22,7 +22,31 @@ public sealed class ShapePreprocessor
 
     public static void Process(Shape shape, List<Segment> conEdges, List<Vertex> conVertices)
     {
+        var segments = new ();
+        int nc = shape.Contours.Count;
+        for (int i = 0; i < nc; i++)
+        {
+            var contour = shape.Contours[i];
+            for (int j = 0; j < contour.Vertices.Count - 1; j++)
+            {
+                var seg = new Segment(contour.Vertices[j], contour.Vertices[j + 1]);
+                var sub = Split(segments, in seg, eps);
+                foreach (var item in sub)
+                {
+                    var ctr = Vertex.Between(in item.start, in item.end);
+                    bool add = false;
+                    for (int k = 0; k < nc; k++)
+                    {
+                        if (k == i) continue;
 
+                        if (shape.Contours[k].Contains(ctr, eps))
+                        {
+
+                        
+                    }
+                }  
+            }
+        }
     }
 
     public static double SqeLen(in Vertex a, in Vertex b)
@@ -54,7 +78,7 @@ public sealed class ShapePreprocessor
         }
     }
 
-    public static void Split(List<Segment> segs, Segment other, double eps)
+    public static List<Segment> Split(List<Segment> segs, Segment other, double eps)
     {
         var otherRect = Rectangle.From2Points(in other.start, in other.end);
         int count = segs.Count;
@@ -109,11 +133,13 @@ public sealed class ShapePreprocessor
             sorted.Add((SqrLen(item, other.start), item);
 
         sorted.Sort((a, b) => a.len.CompareTo(b.len));
-            
+        
+        List<Segment> sub = new ();
         for (int i = 0; i < sorted.Count - 1; i++)
         {
-            segs.Add(sorted[i].vtx, sorted[i+1].vtx, other.id);
+            sub.Add(sorted[i].vtx, sorted[i+1].vtx, other.id);
         }
+        return sub;
     }
 
     public static void Split(List<Segment> segments, int index, in Vertex vtx)
