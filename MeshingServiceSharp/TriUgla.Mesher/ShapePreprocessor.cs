@@ -10,28 +10,7 @@ public readonly struct Segment(Vertex start, Vertex end, string? id)
             Vertex.Close(in end, in vtx, eps);
     }
 
-    public bool Intersect(in Segment other)
-    {
-        double minX = start.x;
-        double minY = start.y;
-        double maxX = end.x;
-        double maxY = end.z;
-        if (minX > maxX)
-        {
-            var t = minX;
-            minX = maxX;
-            maxX = t;
-        }
-
-        if (minY > maxY)
-        {
-            var t = minY;
-            minY = maxY;
-            maxY = t;
-        }
-
-        if 
-    }
+    public Vertex this[int index] => index == 0 ? start : end;
 }
 
 public sealed class ShapePreprocessor
@@ -41,12 +20,49 @@ public sealed class ShapePreprocessor
         List<Vertex> vertices = new List<Vertex>();
     }
 
-    public static Segment[] Split(in Segment segment, in Vertex vtx)
+    public static void Split(List<Segment> segs, Segment other, double eps)
     {
-        return [
-            new (segment.start, vtx, segment.id),
-            new (vtx, segment.end, segment.id)
-        ];
+        var otherRect = Rectangle.From2Points(in other.start, in other.end);
+        int count = segs.Count;
+        
+        List<Vertex> split = new ();
+        for (int i = 0; i < count; i++)
+        {
+            Segment seg = segs[i];
+            var rect = Rectangle.From2Points(in seg.start, in seg.end);
+            if (!rect.Intersects(in other)) continue;
+            
+            bool containsStart = seg.Contains(other.start);
+            bool containsEnd = seg.Contains(other.end);
+            if (containsStart && containsEnd) return;
+            if (containsStart || containsEnd) continue;
+            
+            bool shouldSplit = true;
+            for (int j = 0; j < 2; j++)
+            {
+                Vertex v = j == 0 ? seg.start : seg.end;
+                if (GeometryHelper.OnSegment(seg.start, seg.end, v))
+                {
+                    Split(segs, i, in v);
+                    shouldSplit = false;
+                    break;
+                }
+            }
+
+            if (shouldSplit && 
+                Intersect(seg.start, seg.end, other.start, other.end, out Vertex inter))
+            {
+                Split(segs, i, inter);
+                split.Add(inter);
+            }
+        }
+    }
+
+    public static void Split(List<Segment> segments, int index, in Vertex vtx)
+    {
+        var segment = segments[index];
+        segments[index] = new (segment.start, vtx, segment.id);
+        segments.Add(new (vtx, segment.end, segment.id));
     }
 
     public static int GetOrAdd(List<Vertex> existing, in Vertex vtx, double eps)
