@@ -46,19 +46,12 @@ public sealed class ShapePreprocessor
                 foreach (var item in sub)
                 {
                     var ctr = Vertex.Between(in item.start, in item.end);
-                    bool add = true;
-                    for (int k = 0; k < nc; k++)
+                    if (shape.Holes.Any(o => o.Contains(ctr.x, ctr.y)))
                     {
-                        if (k == i) continue;
-
-                        if (shape.Contours[k].Contains(ctr, eps) ||
-                            shape.Holes.Any(o => o.Contains(ctr.x, ctr.y))
-                        {
-                            add = false;
-                            break;
-                        }
+                        continue;
                     }
-                    if (add) segments.Add(item);
+                    
+                    if (!ContainsExcept()) segments.Add(item);
                 }  
             }
         }
