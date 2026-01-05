@@ -1,11 +1,7 @@
 public sealed class ShapePreprocessor
 {
-    
-}
+    public void Do()
+    {
 
-public class ConstrainedEdge
-{
-    public string? Id { get; set; }
-    public int Start { get; set; }
-    public int End { get; set; }
+    }
 }
