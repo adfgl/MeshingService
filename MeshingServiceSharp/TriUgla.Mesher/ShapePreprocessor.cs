@@ -20,6 +20,13 @@ public sealed class ShapePreprocessor
         List<Vertex> vertices = new List<Vertex>();
     }
 
+    public static double SqeLen(in Vertex a, in Vertex b)
+    {
+        double dx = a.x - b.x;
+        double dy = a.y - b.y;
+        return dx * dx + dy * dy;
+    }
+
     public static void Split(List<Segment> segs, Segment other, double eps)
     {
         var otherRect = Rectangle.From2Points(in other.start, in other.end);
@@ -68,21 +75,18 @@ public sealed class ShapePreprocessor
             }
         }
 
-        List<Segment> o = new();
-        o.Add(other);
+        var sorted = List<(double len, Vertex vtx)>(split.count + 2);
+        split.Add(other.start);
+        split.Add(other.end);
         foreach (var item in split)
+            sorted.Add((SqrLen(item, other.start));
+
+        sorted.Sort((a, b) => a.len.CompareTo(b.len));
+            
+        for (int i = 0; i < sorted.Count - 1; i++)
         {
-            for (int i = 0; i < o.Count; i++)
-            {
-                var s = o[i];
-                if (GeometryHelper.OnSegment(in s.start, in e.end, in s))
-                {
-                    Split(o, i, in item);
-                    break;
-                }
-            }
+            segs.Add(sorted[i].vtx, sorted[i+1].vtx, other.id);
         }
-        segs.AddRange(o);
     }
 
     public static void Split(List<Segment> segments, int index, in Vertex vtx)
