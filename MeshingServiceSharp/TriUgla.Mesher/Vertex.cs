@@ -19,5 +19,11 @@ namespace TriUgla.Mesher
             double dx = a.x - b.x, dy = a.y - b.y;
             return dx * dx + dy * dy <= eps * eps;
         }
+
+        public static Vertex Between(in Vertex a, in Vertex b)
+            => new (
+                (a.x + b.x) * 0.5,
+                (a.y + b.y) * 0.5,
+                (a.z + b.z) * 0.5);
     }
 }
