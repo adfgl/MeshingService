@@ -10,19 +10,20 @@ namespace TriUgla.Mesher
         public Polygon(IEnumerable<Vertex> vertices)
         {
             double eps = 1e-6;
-            double eps2 = eps * eps;
-
+            
             _vts = new List<Vertex>();
             double minX, minY, maxX, maxY;
             minX = minY = double.MaxValue;
             maxX = maxY = double.MinValue;
             foreach (Vertex vertex in vertices)
             {
-                double x = vertex.x;
-                double y = vertex.y;
-                if (!IsDuplicate(_vts, x, y, eps2))
+                if (!_vtx.Any(existing => 
+                    Vertex.Close(in existing, in vertex, eps))
                 {
                     _vts.Add(vertex);
+
+                    double x = vertex.x;
+                    double y = vertex.y;
                     if (x < minX) minX = x;
                     if (y < minY) minY = y;
                     if (x > maxX) maxX = x;
@@ -35,32 +36,16 @@ namespace TriUgla.Mesher
 
             Vertex first = _vts[0];
             Vertex last = _vts[^1];
-            if (!NearlyEqual(first.x, first.y, last.x, last.y, eps2))
+            if (!Vertex.Close(in first, in close, eps))
+            {
                 _vts.Add(first);
+            }
 
             _rect = new Rectangle(minX, minY, maxX, maxY);
         }
 
         public Rectangle Bounds => _rect;
         public IReadOnlyList<Vertex> Vertices => _vts;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool NearlyEqual(double ax, double ay, double bx, double by, double eps)
-        {
-            double dx = ax - bx;
-            double dy = ay - by;
-            return dx * dx + dy * dy <= eps * eps;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IsDuplicate(List<Vertex> existing, double x, double y, double eps2)
-        {
-            foreach (Vertex item in existing)
-            {
-                if (NearlyEqual(item.x, item.y, x, y, eps2)) return true;
-            }
-            return false;
-        }
 
         public bool Contains(double x, double y, double eps)
         {
