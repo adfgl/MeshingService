@@ -19,6 +19,9 @@ namespace TriUgla.Mesher
             return dx * dx + dy * dy <= eps2;
         }
 
+        public static bool InRectangle(in Vertex min, in Vertex max, in Vertex vtx)
+            => InRectangle(min.x, min.y, max.x, max.y, vtx.x, vtx.y);
+
         public static bool InRectangle(
             double minX, double minY,
             double maxX, double maxY,
