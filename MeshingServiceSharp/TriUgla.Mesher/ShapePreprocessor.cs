@@ -5,6 +5,25 @@ public sealed class ShapePreprocessor
         List<Vertex> vertices = new List<Vertex>();
     }
 
+    public static void SplitEdge(List<ConstrainedEdge> edges, int edgeIndex, in Vertex vtx, double eps)
+    {
+        var edge = edges[edgeIndex];
+        var cross = GeometryHelper.Cross(in edge.start, in edge.end, in vtx);
+        if (Math.Abs(cross) > eps)
+        {
+            return;
+        }
+
+        if (Vertex.Close(in vtx, in edge.start, eps) ||
+            Vertex.Close(in vtx, in edge.end, eps))
+        {
+            return;
+        }
+
+        if (GeometryHelper.InRectangle(
+            edge.
+    }
+
     public static int GetOrAdd(List<Vertex> existing, in Vertex vtx, double eps)
     {
         int count = existing.Count;
