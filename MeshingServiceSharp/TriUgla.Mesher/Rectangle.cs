@@ -1,4 +1,4 @@
-﻿namespace TriUgla.Mesher
+namespace TriUgla.Mesher
 {
     public readonly struct Rectangle(double minX, double minY, double maxX, double maxY)
     {
@@ -9,11 +9,22 @@
 
         public static Rectangle From2Points(in Vertex a, in Vertex b)
         {
-            return new Rectangle(
-                a.x < b.x ? a.x : b.x,
-                a.y < b.y ? a.y : b.y,
-                a.x > b.x ? a.x : b.x,
-                a.y > b.y ? a.y : b.y);
+            double minX = a.x, minY = a.y;
+            double maxX = b.x, maxY = b.y;
+            if (minX > maxX)
+            {
+                var t = minX;
+                minX = maxX;
+                maxX = t;
+            }
+
+            if (minY > maxY)
+            {
+                var t = minY;
+                minY = maxY;
+                maxY = t;
+            }
+            return new (minX, minY, maxX, maxY);
         }
 
         public static Rectangle FromCircle(in Circle circle)
