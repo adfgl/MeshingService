@@ -10,12 +10,35 @@ public sealed class ShapePreprocessor
         int count = existing.Count;
         for (int i = 0; i < count; i++)
         {
-            if (Vertex.Close(in existing[i], in vtx, eps))
+            var ex = existing[i];
+            if (Vertex.Close(in ex, in vtx, eps))
             {
+                string? id = GetId(ex.id, vtx.id);
+                double z = Math.Max(ex.z, vtx.z);
+
+                ex.id = id;
+                ex.z = z;
+
+                existing[i] = ex;
                 return i;
             }
         }
         existing.Add(vtx);
         return count;
+    }
+
+    public static string? GetId(string? oldId, string? newId)
+    {
+        if (!String.IsNullOrEmpty(oldId)) 
+            return newId;
+
+        if (!String.IsNullOrEmpty(newId)) 
+            return oldId;
+
+        if (oldId.Length < newId.Length)
+        {
+            return newId
+        }
+        return oldId;
     }
 }
