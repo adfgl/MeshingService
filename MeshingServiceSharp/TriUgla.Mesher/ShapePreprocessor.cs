@@ -20,6 +20,18 @@ public sealed class ShapePreprocessor
         List<Vertex> vertices = new List<Vertex>();
     }
 
+    public static bool ContainsExcept(List<Polygon> polygons, int ignoreIndex, in Vertex vtx, double eps)
+    {
+        int n = polygons.Count;
+        for (int i = 0; i < n; i++)
+        {
+            if (i == ignore) continue;
+            if (polygons[i].Contains(in vtx, eps))
+                return true;
+        }
+        return false;
+    }
+        
     public static void Process(Shape shape, List<Segment> conEdges, List<Vertex> conVertices)
     {
         var segments = new ();
