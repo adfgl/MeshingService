@@ -1,3 +1,16 @@
+public readonly struct Segment(Vertex start, Vertex end, string? id)
+{
+    public readonly Vertex start = start, end = end;
+    public readonly string? id = id;
+
+    public bool Contains(in Vertex vtx, double eps)
+    {
+        return 
+            Vertex.Close(in start, in vtx, eps) ||
+            Vertex.Close(in end, in vtx, eps);
+    }
+}
+
 public sealed class ShapePreprocessor
 {
     public void Do(Shape shape)
