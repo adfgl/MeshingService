@@ -9,6 +9,29 @@ public readonly struct Segment(Vertex start, Vertex end, string? id)
             Vertex.Close(in start, in vtx, eps) ||
             Vertex.Close(in end, in vtx, eps);
     }
+
+    public bool Intersect(in Segment other)
+    {
+        double minX = start.x;
+        double minY = start.y;
+        double maxX = end.x;
+        double maxY = end.z;
+        if (minX > maxX)
+        {
+            var t = minX;
+            minX = maxX;
+            maxX = t;
+        }
+
+        if (minY > maxY)
+        {
+            var t = minY;
+            minY = maxY;
+            maxY = t;
+        }
+
+        if 
+    }
 }
 
 public sealed class ShapePreprocessor
@@ -18,23 +41,12 @@ public sealed class ShapePreprocessor
         List<Vertex> vertices = new List<Vertex>();
     }
 
-    public static void SplitEdge(List<ConstrainedEdge> edges, int edgeIndex, in Vertex vtx, double eps)
+    public static Segment[] Split(in Segment segment, in Vertex vtx)
     {
-        var edge = edges[edgeIndex];
-        var cross = GeometryHelper.Cross(in edge.start, in edge.end, in vtx);
-        if (Math.Abs(cross) > eps)
-        {
-            return;
-        }
-
-        if (Vertex.Close(in vtx, in edge.start, eps) ||
-            Vertex.Close(in vtx, in edge.end, eps))
-        {
-            return;
-        }
-
-        if (GeometryHelper.InRectangle(
-            edge.
+        return [
+            new (segment.start, vtx, segment.id),
+            new (vtx, segment.end, segment.id)
+        ];
     }
 
     public static int GetOrAdd(List<Vertex> existing, in Vertex vtx, double eps)
