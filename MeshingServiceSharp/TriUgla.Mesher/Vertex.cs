@@ -9,6 +9,7 @@ namespace TriUgla.Mesher
             x = this.x; y = this.y;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Close(in Vertex a, in Vertex b, double eps)
         {
             double dx = a.x - b.x, dy = a.y - b.y;
