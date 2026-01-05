@@ -27,6 +27,28 @@ public sealed class ShapePreprocessor
         return dx * dx + dy * dy;
     }
 
+    public static void Split(List<Segment> segs, Vertex other, double eps)
+    {
+        int count = segs.Count;
+        for (int i = 0; i < count; i++)
+        {
+            var seg = segs[i];
+            var rect = Rectangle.From2Points(in seg.start, in seg.end);
+            if (!rect.Contains(other.x, other.y) ||
+                Vertex.Close(in seg.start, in other, eps) ||
+                Vertex.Close(in seg.end, in other, eps))
+            {
+                continue;
+            }
+
+            if (GeometryHelper.OnSegment(in seg.start, in seg.end, in other))
+            {
+                Split(segs, i, in other);
+                break;
+            }
+        }
+    }
+
     public static void Split(List<Segment> segs, Segment other, double eps)
     {
         var otherRect = Rectangle.From2Points(in other.start, in other.end);
@@ -79,7 +101,7 @@ public sealed class ShapePreprocessor
         split.Add(other.start);
         split.Add(other.end);
         foreach (var item in split)
-            sorted.Add((SqrLen(item, other.start));
+            sorted.Add((SqrLen(item, other.start), item);
 
         sorted.Sort((a, b) => a.len.CompareTo(b.len));
             
